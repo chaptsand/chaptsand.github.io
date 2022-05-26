@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Android,Linux,MacOS">
+    <meta name="description" content="No sorrow">
+    <meta name="author" content="ChaptSand">
+    
+    <title>
+        
+            动态分区刷GSI(通用镜像)的正确姿势 |
+        
+        雨雾石头
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/loge.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.chaptsand.top","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#00FFCC","avatar":"https://v1.alapi.cn/api/avatar?email=chaptsand@gmail.com&size=100","favicon":"https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/loge.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"相逢的人会再相逢"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="雨雾石头" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                雨雾石头
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/changelog"
+                            >
+                                更新日志
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/changelog">更新日志</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">动态分区刷GSI(通用镜像)的正确姿势</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://v1.alapi.cn/api/avatar?email=chaptsand@gmail.com&size=100">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ChaptSand</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-06-21 02:27:00</span>
+        <span class="mobile">2020-06-21 02:27</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/diy/">diy</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Android/">Android</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/GSI/">GSI</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="一、通用镜像-GSI-和动态分区"><a href="#一、通用镜像-GSI-和动态分区" class="headerlink" title="一、通用镜像(GSI)和动态分区"></a>一、通用镜像(GSI)和动态分区</h2><h3 id="通用镜像-GSI"><a href="#通用镜像-GSI" class="headerlink" title="通用镜像(GSI)"></a>通用镜像(GSI)</h3><p><img src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/gsi.png" alt="GSI"></p>
+<span id="more"></span>
+
+<h3 id="动态分区"><a href="#动态分区" class="headerlink" title="动态分区"></a>动态分区</h3><p>Google在Android10开始引入了动态分区（Dynamic Partitions）<br><img src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/dynamic_partitions.png" alt="Dynamic Partitions"><br>简单来说，就是把原来的system , vendor , product还有odm分区整合到了一起，构成super分区 ，在刷入设备的时候动态调整system等分区的大小,这个改变给让我们刷机、修改system分区等操作带来了困难，在Twrp里挂载后并不能直接刷入分区镜像</p>
+<h2 id="二、动态分区刷GSI的方法"><a href="#二、动态分区刷GSI的方法" class="headerlink" title="二、动态分区刷GSI的方法"></a>二、动态分区刷GSI的方法</h2><ul>
+<li>针对以下内容，<ul>
+<li>解锁Bootloader ,开启ADB调试后食用</li>
+<li>适合具备相关刷机、救砖经验者进行尝试</li>
+<li>你的设备因此损坏，与我没有关系</li>
+</ul>
+</li>
+</ul>
+<h3 id="方法１-使用动态系统更新（DSU"><a href="#方法１-使用动态系统更新（DSU" class="headerlink" title="方法１.使用动态系统更新（DSU)"></a>方法１.使用动态系统更新（DSU)</h3><blockquote>
+<p>Goole介绍：<a class="link"   target="_blank" rel="noopener" href="https://source.android.google.cn/devices/tech/ota/dynamic-system-updates?hl=zh-cn" >WhatIsDSU<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+<h4 id="步骤1-启用-DSU-功能标志"><a href="#步骤1-启用-DSU-功能标志" class="headerlink" title="步骤1.启用 DSU 功能标志"></a>步骤1.启用 DSU 功能标志</h4><p>安卓10正式版及以上，可以在开发者选项中Feature flags &gt; settings_dynamic_system 中启用该功能。国内系统UI大多隐藏了，可以尝试用下面的adb 命令开启：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell setprop persist.sys.fflag.override.settings_dynamic_system true</span><br></pre></td></tr></table></figure>
+<h4 id="步骤2-安装前的准备"><a href="#步骤2-安装前的准备" class="headerlink" title="步骤2.安装前的准备"></a>步骤2.安装前的准备</h4><p>通过DSU安装的GSI需要是可直接刷写的raw格式镜像，在开始前先检查你的镜像是不是raw格式<br>linux或者mac系统可以用<code>file system.img</code>命令查看</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">file system.img</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">system.img: Linux rev 1.0 ext2 filesystem data, UUID=91180515-3f1c-501d-888d-6f81f7ca3301 (extents) (large files) (huge files)</span></span><br></pre></td></tr></table></figure>
+<p>若返回值是这样的就是raw格式<br><strong>若为稀疏格式（simg），可以使用以下命令把system镜像转为raw格式镜像</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">simg2img system.img system_raw.img</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一般gsi镜像都是simg格式，先检查转换</li>
+</ul>
+<h4 id="步骤3-将镜像打包为gz格式"><a href="#步骤3-将镜像打包为gz格式" class="headerlink" title="步骤3.将镜像打包为gz格式"></a>步骤3.将镜像打包为gz格式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gzip -c system_raw.img &gt; system_raw.gz</span><br></pre></td></tr></table></figure>
+<p>*也可以直接用压缩工具压缩为gzip压缩包</p>
+<h4 id="步骤4-用adb推到手机内置储存"><a href="#步骤4-用adb推到手机内置储存" class="headerlink" title="步骤4.用adb推到手机内置储存"></a>步骤4.用adb推到手机内置储存</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push system_raw.gz /storage/emulated/0/Download/</span><br></pre></td></tr></table></figure>
+<h4 id="步骤5-安装动态系统更新"><a href="#步骤5-安装动态系统更新" class="headerlink" title="步骤5.安装动态系统更新"></a>步骤5.安装动态系统更新</h4><ul>
+<li>下面的命令要全部一起复制执行</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity \</span><br><span class="line">    -n com.android.dynsystem/com.android.dynsystem.VerificationActivity  \</span><br><span class="line">    -a android.os.image.action.START_INSTALL    \</span><br><span class="line">    -d file:///storage/emulated/0/Download/system_raw.gz  \</span><br><span class="line">    --el KEY_SYSTEM_SIZE $(du -b system_raw.img|cut -f1)  \</span><br><span class="line">    --el KEY_USERDATA_SIZE 8589934592	</span><br></pre></td></tr></table></figure>
+
+<p><strong>这里第五行的<code>$(du -b system_raw.img|cut -f1)</code>可直接用    system_raw.img    的大小代替，不然用windows刷会报错</strong><br>比如我的个system_raw.img的大小为2370265088</p>
+<p><img src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/systemsize.png" alt="systemimage size"></p>
+<p>命令就改为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity \</span><br><span class="line">    -n com.android.dynsystem/com.android.dynsystem.VerificationActivity  \</span><br><span class="line">    -a android.os.image.action.START_INSTALL    \</span><br><span class="line">    -d file:///storage/emulated/0/Download/system_raw.gz  \</span><br><span class="line">    --el KEY_SYSTEM_SIZE 2370265088  \</span><br><span class="line">    --el KEY_USERDATA_SIZE 2370265088</span><br></pre></td></tr></table></figure>
+
+<p>然后你就会看到状态栏有正在安装的动态更新的提示，安装完重启进入第二个系统</p>
+<p>小米10出厂安卓10，必然是支持DSU的</p>
+<p>你可以用此方法尝试安装phh的aosp gsi</p>
+<h3 id="方法2-通过fastbootd刷入GSI镜像（推荐）"><a href="#方法2-通过fastbootd刷入GSI镜像（推荐）" class="headerlink" title="方法2.通过fastbootd刷入GSI镜像（推荐）"></a>方法2.通过fastbootd刷入GSI镜像（推荐）</h3><p><code>fastbootd</code>——用户空间中的fastboot<br><strong>注意，fastbootd和fastboot是两个不同的模式</strong><br><img src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/fastbootd.png" alt="fastbootd"></p>
+<ul>
+<li>针对以下内容<ul>
+<li>Android 10引入了 启动时验证 (AVB)，在刷写 GSI之前，先下载并刷入vbmeta.img以停用 AVB</li>
+<li>以下步骤请使用最新版android-platform-tools进行操作</li>
+<li>如果不知道说的是什么，建议先百度fastboot刷机</li>
+</ul>
+</li>
+</ul>
+<p><code>vbmeta.img</code>一般包含会随gsi镜像一起发布</p>
+<h4 id="步骤1-重启到fastboot"><a href="#步骤1-重启到fastboot" class="headerlink" title="步骤1.重启到fastboot"></a>步骤1.重启到fastboot</h4><p>关机状态同时按电源+音量减 或者开启adb调试后<code>adb reboot bootloader</code></p>
+<h4 id="步骤2-刷入vbmeta-img停用AVB验证"><a href="#步骤2-刷入vbmeta-img停用AVB验证" class="headerlink" title="步骤2.刷入vbmeta.img停用AVB验证"></a>步骤2.刷入vbmeta.img停用AVB验证</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot --disable-verification flash vbmeta vbmeta.img</span><br></pre></td></tr></table></figure>
+<h4 id="步骤3-还原MIUI官方recovery"><a href="#步骤3-还原MIUI官方recovery" class="headerlink" title="步骤3.还原MIUI官方recovery"></a>步骤3.还原MIUI官方recovery</h4><p>目的是可以启动fastbootd<br>或者使用twrp里的用户空间fastboot也可以，注意如果twrp有这个功能可以不用刷回miui recovery</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash recovery recovery.img</span><br></pre></td></tr></table></figure>
+<h4 id="步骤4-在fastboot模式下进入fastbootd模式"><a href="#步骤4-在fastboot模式下进入fastbootd模式" class="headerlink" title="步骤4.在fastboot模式下进入fastbootd模式"></a>步骤4.在fastboot模式下进入fastbootd模式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot reboot fastboot</span><br></pre></td></tr></table></figure>
+<p><strong>一定是要通过fastboot命令运行这句，才能启动到fastbootd模式</strong></p>
+<ul>
+<li>到这里如果卡在waiting for any devices就是没有安装小米usb驱动，设备管理器会识别你的手机，右键更新驱动程序。<br> PS：<a class="link"   target="_blank" rel="noopener" href="http://bigota.d.miui.com/tools/xiaomi_usb_driver.rar" >小米USB驱动<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h4 id="步骤5-刷入system镜像"><a href="#步骤5-刷入system镜像" class="headerlink" title="步骤5.刷入system镜像"></a>步骤5.刷入system镜像</h4><p>安装好驱动，进入fastbootd之后，这时候fastboot命令已经可以识别system分区了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash system system.img</span><br></pre></td></tr></table></figure>
+<h4 id="步骤6-清楚数据"><a href="#步骤6-清楚数据" class="headerlink" title="步骤6.清楚数据"></a>步骤6.清楚数据</h4><p>*会格式化data,防止加密（注意提前备份）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot -w</span><br></pre></td></tr></table></figure>
+<h4 id="步骤7-重启系统"><a href="#步骤7-重启系统" class="headerlink" title="步骤7.重启系统"></a>步骤7.重启系统</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot reboot</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：动态分区刷GSI(通用镜像)的正确姿势</li>
+        <li>本文作者：ChaptSand</li>
+        <li>创建时间：2020-06-21 02:27:00</li>
+        <li>
+            本文链接：https://www.chaptsand.top/posts/da8abb0.html
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Android/">#Android</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/GSI/">#GSI</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/posts/92ae578f.html"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Windows引导修复</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/posts/d3794e8f.html"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Debian配置iptables防火墙</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'jHqQ8N0yNj2mbPtAvAA2TofG-gzGzoHsz',
+                    appKey: 'Q05rqHhfkwmqRYgv9nel8ktH',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '让我来康康',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'ChaptSand';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ChaptSand</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%80%9A%E7%94%A8%E9%95%9C%E5%83%8F-GSI-%E5%92%8C%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA"><span class="nav-text">一、通用镜像(GSI)和动态分区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E9%95%9C%E5%83%8F-GSI"><span class="nav-text">通用镜像(GSI)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA"><span class="nav-text">动态分区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA%E5%88%B7GSI%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">二、动态分区刷GSI的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%EF%BC%91-%E4%BD%BF%E7%94%A8%E5%8A%A8%E6%80%81%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%96%B0%EF%BC%88DSU"><span class="nav-text">方法１.使用动态系统更新（DSU)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41-%E5%90%AF%E7%94%A8-DSU-%E5%8A%9F%E8%83%BD%E6%A0%87%E5%BF%97"><span class="nav-text">步骤1.启用 DSU 功能标志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42-%E5%AE%89%E8%A3%85%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87"><span class="nav-text">步骤2.安装前的准备</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A43-%E5%B0%86%E9%95%9C%E5%83%8F%E6%89%93%E5%8C%85%E4%B8%BAgz%E6%A0%BC%E5%BC%8F"><span class="nav-text">步骤3.将镜像打包为gz格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A44-%E7%94%A8adb%E6%8E%A8%E5%88%B0%E6%89%8B%E6%9C%BA%E5%86%85%E7%BD%AE%E5%82%A8%E5%AD%98"><span class="nav-text">步骤4.用adb推到手机内置储存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A45-%E5%AE%89%E8%A3%85%E5%8A%A8%E6%80%81%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%96%B0"><span class="nav-text">步骤5.安装动态系统更新</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%952-%E9%80%9A%E8%BF%87fastbootd%E5%88%B7%E5%85%A5GSI%E9%95%9C%E5%83%8F%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-text">方法2.通过fastbootd刷入GSI镜像（推荐）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41-%E9%87%8D%E5%90%AF%E5%88%B0fastboot"><span class="nav-text">步骤1.重启到fastboot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42-%E5%88%B7%E5%85%A5vbmeta-img%E5%81%9C%E7%94%A8AVB%E9%AA%8C%E8%AF%81"><span class="nav-text">步骤2.刷入vbmeta.img停用AVB验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A43-%E8%BF%98%E5%8E%9FMIUI%E5%AE%98%E6%96%B9recovery"><span class="nav-text">步骤3.还原MIUI官方recovery</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A44-%E5%9C%A8fastboot%E6%A8%A1%E5%BC%8F%E4%B8%8B%E8%BF%9B%E5%85%A5fastbootd%E6%A8%A1%E5%BC%8F"><span class="nav-text">步骤4.在fastboot模式下进入fastbootd模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A45-%E5%88%B7%E5%85%A5system%E9%95%9C%E5%83%8F"><span class="nav-text">步骤5.刷入system镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A46-%E6%B8%85%E6%A5%9A%E6%95%B0%E6%8D%AE"><span class="nav-text">步骤6.清楚数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A47-%E9%87%8D%E5%90%AF%E7%B3%BB%E7%BB%9F"><span class="nav-text">步骤7.重启系统</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>

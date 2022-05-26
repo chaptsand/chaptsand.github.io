@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Android,Linux,MacOS">
+    <meta name="description" content="No sorrow">
+    <meta name="author" content="ChaptSand">
+    
+    <title>
+        
+            Arch linux安装记录 |
+        
+        雨雾石头
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/loge.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.chaptsand.top","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#00FFCC","avatar":"https://v1.alapi.cn/api/avatar?email=chaptsand@gmail.com&size=100","favicon":"https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/loge.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"相逢的人会再相逢"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="雨雾石头" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                雨雾石头
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/changelog"
+                            >
+                                更新日志
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/changelog">更新日志</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Arch linux安装记录</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="https://v1.alapi.cn/api/avatar?email=chaptsand@gmail.com&size=100">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ChaptSand</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-11-30 12:27:24</span>
+        <span class="mobile">2021-11-30 12:27</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>614 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><img src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/archlinux-vert-dark.svg"></p>
+<p>官网: <a class="link"   target="_blank" rel="noopener" href="https://archlinux.org/" >https://archlinux.org<i class="fas fa-external-link-alt"></i></a><br>Wiki: <a class="link"   target="_blank" rel="noopener" href="https://wiki.archlinux.org/" >https://wiki.archlinux.org<i class="fas fa-external-link-alt"></i></a></p>
+<p>新手推荐直接按这个来，非常完整，并且有视频教程 <a class="link"   target="_blank" rel="noopener" href="https://archlinuxstudio.github.io/ArchLinuxTutorial/#/" >https://archlinuxstudio.github.io/ArchLinuxTutorial/#/<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="1-1-镜像下载"><a href="#1-1-镜像下载" class="headerlink" title="1.1.镜像下载"></a>1.1.镜像下载</h4><p><a class="link"   target="_blank" rel="noopener" href="https://archlinux.org/download/" >https://archlinux.org/download/<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="http://mirrors.bfsu.edu.cn/archlinux/iso/" >http://mirrors.bfsu.edu.cn/archlinux/iso/<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="1-2-刻录启动盘"><a href="#1-2-刻录启动盘" class="headerlink" title="1.2.刻录启动盘"></a>1.2.刻录启动盘</h4><ul>
+<li>Linux 下用 dd 命令进行刻录</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dd bs=4M if=/path/to/archlinux.iso of=/dev/sdx status=progress oflag=sync</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Windows<br>Rufus：<u><a class="link"   target="_blank" rel="noopener" href="https://rufus.ie/" >https://rufus.ie<i class="fas fa-external-link-alt"></i></a></u></li>
+</ul>
+<h4 id="1-3-关闭-Secure-Boot"><a href="#1-3-关闭-Secure-Boot" class="headerlink" title="1.3.关闭 Secure Boot"></a>1.3.关闭 Secure Boot</h4><h4 id="2-1-连接网络"><a href="#2-1-连接网络" class="headerlink" title="2.1.连接网络"></a>2.1.连接网络</h4><p>因为网卡不能驱动，使用有线网络连接</p>
+<h4 id="2-2-检查网络连接"><a href="#2-2-检查网络连接" class="headerlink" title="2.2.检查网络连接"></a>2.2.检查网络连接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-更新系统时钟"><a href="#2-3-更新系统时钟" class="headerlink" title="2.3.更新系统时钟"></a>2.3.更新系统时钟</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl set-ntp true</span><br></pre></td></tr></table></figure>
+
+<h4 id="更换国内镜像源"><a href="#更换国内镜像源" class="headerlink" title="更换国内镜像源"></a>更换国内镜像源</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/pacman.d/mirrorlist</span><br></pre></td></tr></table></figure>
+
+<p>放在最上面的行是会使用的更新源，我这里北外的镜像源效果最好</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch</span><br><span class="line">Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch</span><br><span class="line">Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-分区"><a href="#2-4-分区" class="headerlink" title="2.4.分区"></a>2.4.分区</h4><table>
+<thead>
+<tr>
+<th>分区</th>
+<th>挂载点</th>
+<th>大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EFI 分区</td>
+<td>&#x2F;efi</td>
+<td>800M</td>
+</tr>
+<tr>
+<td>swap分区</td>
+<td>none</td>
+<td>16G</td>
+</tr>
+<tr>
+<td>根目录</td>
+<td>&#x2F;</td>
+<td>剩余全部</td>
+</tr>
+</tbody></table>
+<p>我这里没有单独分home分区，有需要的可以自己调整</p>
+<h5 id="2-4-1-将磁盘转换为-gpt-类型（对于新硬盘）"><a href="#2-4-1-将磁盘转换为-gpt-类型（对于新硬盘）" class="headerlink" title="2.4.1.将磁盘转换为 gpt 类型（对于新硬盘）"></a>2.4.1.将磁盘转换为 gpt 类型（对于新硬盘）</h5><p>这里的<code>nvme0n1</code>是我硬盘的代号，要以<code>lsblk</code>看到的实际情况为准</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lsblk                       <span class="comment">#显示分区情况</span></span><br><span class="line">parted /dev/nvme0n1         <span class="comment">#执行parted，进行磁盘类型变更</span></span><br><span class="line">(parted)mktable             <span class="comment">#输入mktable</span></span><br><span class="line">New disk label <span class="built_in">type</span>? gpt    <span class="comment">#输入gpt 将磁盘类型转换为gpt 如磁盘有数据会警告，输入yes即可</span></span><br><span class="line">(parted)quit                <span class="comment">#最后quit退出parted命令行交互</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-4-2-使用-cfdisk-命令对磁盘分区"><a href="#2-4-2-使用-cfdisk-命令对磁盘分区" class="headerlink" title="2.4.2.使用 cfdisk 命令对磁盘分区"></a>2.4.2.使用 cfdisk 命令对磁盘分区</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cfdisk /dev/nvme0n1</span><br></pre></td></tr></table></figure>
+
+<p>new &gt; 创建分区，输入大小回车</p>
+<p>type &gt; 选择分区类型</p>
+<p>完事后使用<code>fdisk -l</code> 检查分区情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">设备                起点       末尾      扇区   大小 类型</span><br><span class="line">/dev/nvme0n1p1      2048    1640447   1638400   800M EFI 系统</span><br><span class="line">/dev/nvme0n1p2   1640448   35194879  33554432    16G Linux swap</span><br><span class="line">/dev/nvme0n1p3  35194880 1000215182 755305103 460.2G Linux 文件系统</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-格式化"><a href="#2-5-格式化" class="headerlink" title="2.5.格式化"></a>2.5.格式化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/nvmen1p3             <span class="comment">#格式化根目录分区</span></span><br><span class="line">mkswap /dev/nvme0n1p2               <span class="comment">#创建swap分区</span></span><br><span class="line">mkfs.vfat /dev/nvme0n1p1            <span class="comment">#格式化efi分区</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-挂载"><a href="#2-6-挂载" class="headerlink" title="2.6.挂载"></a>2.6.挂载</h4><p>挂载是有顺序的，需要从根目录开始挂载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/nvme0n1p3 /mnt           <span class="comment">#挂载根目录</span></span><br><span class="line"><span class="built_in">mkdir</span> /mnt/efi                      <span class="comment">#创建efi文件夹</span></span><br><span class="line">mount /dev/nvme0n1p1 /mnt/efi       <span class="comment">#挂载efi分区</span></span><br><span class="line">swapon /dev/nvme0n1p2               <span class="comment">#挂载swap分区</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-7-安装系统"><a href="#2-7-安装系统" class="headerlink" title="2.7.安装系统"></a>2.7.安装系统</h4><ul>
+<li>基础包</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacstrap /mnt base base-devel linux linux-headers linux-firmware</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>功能性软件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacstrap /mnt dhcpcd iwd vim bash-completion</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-8-生成-fstab-文件"><a href="#2-8-生成-fstab-文件" class="headerlink" title="2.8.生成 fstab 文件"></a>2.8.生成 fstab 文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span><br></pre></td></tr></table></figure>
+
+<p> <code>cat /mnt/etc/fstab</code>复查一下 &#x2F;mnt&#x2F;etc&#x2F;fstab 确保没有错误</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：Arch linux安装记录</li>
+        <li>本文作者：ChaptSand</li>
+        <li>创建时间：2021-11-30 12:27:24</li>
+        <li>
+            本文链接：https://www.chaptsand.top/posts/da23mk3d.html
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Linux/">#Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/posts/652a6f9f.html"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">rss</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/posts/8f90ce31.html"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">c盘分多大</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script >
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: 'jHqQ8N0yNj2mbPtAvAA2TofG-gzGzoHsz',
+                    appKey: 'Q05rqHhfkwmqRYgv9nel8ktH',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '让我来康康',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'ChaptSand';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('false') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ChaptSand</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD"><span class="nav-text">1.1.镜像下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%88%BB%E5%BD%95%E5%90%AF%E5%8A%A8%E7%9B%98"><span class="nav-text">1.2.刻录启动盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E5%85%B3%E9%97%AD-Secure-Boot"><span class="nav-text">1.3.关闭 Secure Boot</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C"><span class="nav-text">2.1.连接网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E6%A3%80%E6%9F%A5%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5"><span class="nav-text">2.2.检查网络连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%92%9F"><span class="nav-text">2.3.更新系统时钟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90"><span class="nav-text">更换国内镜像源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E5%88%86%E5%8C%BA"><span class="nav-text">2.4.分区</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-1-%E5%B0%86%E7%A3%81%E7%9B%98%E8%BD%AC%E6%8D%A2%E4%B8%BA-gpt-%E7%B1%BB%E5%9E%8B%EF%BC%88%E5%AF%B9%E4%BA%8E%E6%96%B0%E7%A1%AC%E7%9B%98%EF%BC%89"><span class="nav-text">2.4.1.将磁盘转换为 gpt 类型（对于新硬盘）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-2-%E4%BD%BF%E7%94%A8-cfdisk-%E5%91%BD%E4%BB%A4%E5%AF%B9%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="nav-text">2.4.2.使用 cfdisk 命令对磁盘分区</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-text">2.5.格式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-%E6%8C%82%E8%BD%BD"><span class="nav-text">2.6.挂载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="nav-text">2.7.安装系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-%E7%94%9F%E6%88%90-fstab-%E6%96%87%E4%BB%B6"><span class="nav-text">2.8.生成 fstab 文件</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/code-copy.js"></script>
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.3/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
