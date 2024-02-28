@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>雨雾石头</title>
+  
+  <subtitle>ChaptSand&#39;s blog</subtitle>
+  <link href="https://www.chaptsand.top/atom.xml" rel="self"/>
+  
+  <link href="https://www.chaptsand.top/"/>
+  <updated>2024-02-28T05:06:37.000Z</updated>
+  <id>https://www.chaptsand.top/</id>
+  
+  <author>
+    <name>ChaptSand</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello</title>
+    <link href="https://www.chaptsand.top/posts/432adct5.html"/>
+    <id>https://www.chaptsand.top/posts/432adct5.html</id>
+    <published>2022-11-04T07:47:23.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>没怎么上酷安了，这期间收到了一些的私信和评论，有的没来得及回应，在这里发个说明贴吧</p><p>小米10依然是主力机，<br>维护过的类原生项目有：<br>Pixel Experience （Unofficial）<br>ArrowOS （Official）<br>crDroid （Official）<br>Paranoid Android （Official）</p><p>最近在维护小米10的类原生有 LineageOS （Unofficial）<br>los的维护基本上是贯穿了整个Android12周期，更新频率大概是月更<br>熟悉我的人都知道我是老鸽子了，虽然进了多个项目的官方维护组，但是长期不更新，更多的时候都是发Unofficial版本</p><p>很多人说米10都没有官方类原生，会觉得Unofficial不稳定，甚至看不起Unofficial<br>其实第三方ROM的好坏和官不关官方没关系<br>主要还得看Core Team对项目的源码的把控（代码质量、bug修复、功能特性）；维护者要能熟悉源码、设备树、内核，使自己设备的硬件正常工作，在保持稳定的情况下做出有效的优化。<br>虽然对于开源项目，很多时候就是互抄作业。但抄作业也是一门艺术，应该尊重开源而不是乱Kang</p><p>至于为什么不留在官方，解释如下:<br>因为我有自己的生活，我要去追求更美好的事物，我觉得自己不能保证定时的更新。</p><p>大部分rom官方并不提供编译服务器，需要自己编译、测试、发布。<br>我没有固定的服务器&#x2F;编译机，只能随缘更新了</p><p>可以在SourceForge上下载我的ROM<br><a class="link"   href="https://sourceforge.net/projects/skyloft-project/files/umi/" >https://sourceforge.net/projects/skyloft-project/files/umi/<i class="fas fa-external-link-alt"></i></a><br>更新日志：<a class="link"   href="https://github.com/chaptsand/android_device_xiaomi_umi/releases" >https://github.com/chaptsand/android_device_xiaomi_umi/releases<i class="fas fa-external-link-alt"></i></a><br>更多说明以及Bug反馈：TG群组<a class="link"   href="https://t.me/ChaptSpace" >https://t.me/ChaptSpace<i class="fas fa-external-link-alt"></i></a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;没怎么上酷安了，这期间收到了一些的私信和评论，有的没来得及回应，在这里发个说明贴吧&lt;/p&gt;
+&lt;p&gt;小米10依然是主力机，&lt;br&gt;维护过的类原生项目有：&lt;br&gt;Pixel Experience （Unofficial）&lt;br&gt;ArrowOS （Official）&lt;br&gt;crD</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>rss</title>
+    <link href="https://www.chaptsand.top/posts/652a6f9f.html"/>
+    <id>https://www.chaptsand.top/posts/652a6f9f.html</id>
+    <published>2022-05-26T04:13:46.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>博客已开启RSS订阅功能，戳右下角工具按钮组里面RSS按钮</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;博客已开启RSS订阅功能，戳右下角工具按钮组里面RSS按钮&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Arch linux安装记录</title>
+    <link href="https://www.chaptsand.top/posts/da23mk3d.html"/>
+    <id>https://www.chaptsand.top/posts/da23mk3d.html</id>
+    <published>2021-11-30T04:27:24.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/archlinux-vert-dark.svg" ></p><p>官网: <a class="link"   href="https://archlinux.org/" >https://archlinux.org<i class="fas fa-external-link-alt"></i></a><br>Wiki: <a class="link"   href="https://wiki.archlinux.org/" >https://wiki.archlinux.org<i class="fas fa-external-link-alt"></i></a></p><p>新手推荐直接按这个来，非常完整，并且有视频教程 <a class="link"   href="https://archlinuxstudio.github.io/ArchLinuxTutorial/#/" >https://archlinuxstudio.github.io/ArchLinuxTutorial/#/<i class="fas fa-external-link-alt"></i></a></p><h4 id="1-1-镜像下载"><a href="#1-1-镜像下载" class="headerlink" title="1.1.镜像下载"></a>1.1.镜像下载</h4><p><a class="link"   href="https://archlinux.org/download/" >https://archlinux.org/download/<i class="fas fa-external-link-alt"></i></a><br><a class="link"   href="http://mirrors.bfsu.edu.cn/archlinux/iso/" >http://mirrors.bfsu.edu.cn/archlinux/iso/<i class="fas fa-external-link-alt"></i></a></p><h4 id="1-2-刻录启动盘"><a href="#1-2-刻录启动盘" class="headerlink" title="1.2.刻录启动盘"></a>1.2.刻录启动盘</h4><ul><li>Linux 下用 dd 命令进行刻录</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dd bs=4M if=/path/to/archlinux.iso of=/dev/sdx status=progress oflag=sync</span><br></pre></td></tr></table></figure><ul><li>Windows<br>Rufus：<u><a class="link"   href="https://rufus.ie/" >https://rufus.ie<i class="fas fa-external-link-alt"></i></a></u></li></ul><h4 id="1-3-关闭-Secure-Boot"><a href="#1-3-关闭-Secure-Boot" class="headerlink" title="1.3.关闭 Secure Boot"></a>1.3.关闭 Secure Boot</h4><h4 id="2-1-连接网络"><a href="#2-1-连接网络" class="headerlink" title="2.1.连接网络"></a>2.1.连接网络</h4><p>因为网卡不能驱动，使用有线网络连接</p><h4 id="2-2-检查网络连接"><a href="#2-2-检查网络连接" class="headerlink" title="2.2.检查网络连接"></a>2.2.检查网络连接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure><h4 id="2-3-更新系统时钟"><a href="#2-3-更新系统时钟" class="headerlink" title="2.3.更新系统时钟"></a>2.3.更新系统时钟</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl set-ntp true</span><br></pre></td></tr></table></figure><h4 id="更换国内镜像源"><a href="#更换国内镜像源" class="headerlink" title="更换国内镜像源"></a>更换国内镜像源</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/pacman.d/mirrorlist</span><br></pre></td></tr></table></figure><p>放在最上面的行是会使用的更新源，我这里北外的镜像源效果最好</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch</span><br><span class="line">Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch</span><br><span class="line">Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch</span><br></pre></td></tr></table></figure><h4 id="2-4-分区"><a href="#2-4-分区" class="headerlink" title="2.4.分区"></a>2.4.分区</h4><table><thead><tr><th>分区</th><th>挂载点</th><th>大小</th></tr></thead><tbody><tr><td>EFI 分区</td><td>&#x2F;efi</td><td>800M</td></tr><tr><td>swap分区</td><td>none</td><td>16G</td></tr><tr><td>根目录</td><td>&#x2F;</td><td>剩余全部</td></tr></tbody></table><p>我这里没有单独分home分区，有需要的可以自己调整</p><h5 id="2-4-1-将磁盘转换为-gpt-类型（对于新硬盘）"><a href="#2-4-1-将磁盘转换为-gpt-类型（对于新硬盘）" class="headerlink" title="2.4.1.将磁盘转换为 gpt 类型（对于新硬盘）"></a>2.4.1.将磁盘转换为 gpt 类型（对于新硬盘）</h5><p>这里的<code>nvme0n1</code>是我硬盘的代号，要以<code>lsblk</code>看到的实际情况为准</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lsblk                       <span class="comment">#显示分区情况</span></span><br><span class="line">parted /dev/nvme0n1         <span class="comment">#执行parted，进行磁盘类型变更</span></span><br><span class="line">(parted)mktable             <span class="comment">#输入mktable</span></span><br><span class="line">New disk label <span class="built_in">type</span>? gpt    <span class="comment">#输入gpt 将磁盘类型转换为gpt 如磁盘有数据会警告，输入yes即可</span></span><br><span class="line">(parted)quit                <span class="comment">#最后quit退出parted命令行交互</span></span><br></pre></td></tr></table></figure><h5 id="2-4-2-使用-cfdisk-命令对磁盘分区"><a href="#2-4-2-使用-cfdisk-命令对磁盘分区" class="headerlink" title="2.4.2.使用 cfdisk 命令对磁盘分区"></a>2.4.2.使用 cfdisk 命令对磁盘分区</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cfdisk /dev/nvme0n1</span><br></pre></td></tr></table></figure><p>new &gt; 创建分区，输入大小回车</p><p>type &gt; 选择分区类型</p><p>完事后使用<code>fdisk -l</code> 检查分区情况</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">设备                起点       末尾      扇区   大小 类型</span><br><span class="line">/dev/nvme0n1p1      2048    1640447   1638400   800M EFI 系统</span><br><span class="line">/dev/nvme0n1p2   1640448   35194879  33554432    16G Linux swap</span><br><span class="line">/dev/nvme0n1p3  35194880 1000215182 755305103 460.2G Linux 文件系统</span><br></pre></td></tr></table></figure><h4 id="2-5-格式化"><a href="#2-5-格式化" class="headerlink" title="2.5.格式化"></a>2.5.格式化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkfs.ext4 /dev/nvmen1p3             <span class="comment">#格式化根目录分区</span></span><br><span class="line">mkswap /dev/nvme0n1p2               <span class="comment">#创建swap分区</span></span><br><span class="line">mkfs.vfat /dev/nvme0n1p1            <span class="comment">#格式化efi分区</span></span><br></pre></td></tr></table></figure><h4 id="2-6-挂载"><a href="#2-6-挂载" class="headerlink" title="2.6.挂载"></a>2.6.挂载</h4><p>挂载是有顺序的，需要从根目录开始挂载</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/nvme0n1p3 /mnt           <span class="comment">#挂载根目录</span></span><br><span class="line"><span class="built_in">mkdir</span> /mnt/efi                      <span class="comment">#创建efi文件夹</span></span><br><span class="line">mount /dev/nvme0n1p1 /mnt/efi       <span class="comment">#挂载efi分区</span></span><br><span class="line">swapon /dev/nvme0n1p2               <span class="comment">#挂载swap分区</span></span><br></pre></td></tr></table></figure><h4 id="2-7-安装系统"><a href="#2-7-安装系统" class="headerlink" title="2.7.安装系统"></a>2.7.安装系统</h4><ul><li>基础包</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacstrap /mnt base base-devel linux linux-headers linux-firmware</span><br></pre></td></tr></table></figure><ul><li>功能性软件</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacstrap /mnt dhcpcd iwd vim bash-completion</span><br></pre></td></tr></table></figure><h4 id="2-8-生成-fstab-文件"><a href="#2-8-生成-fstab-文件" class="headerlink" title="2.8.生成 fstab 文件"></a>2.8.生成 fstab 文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span><br></pre></td></tr></table></figure><p> <code>cat /mnt/etc/fstab</code>复查一下 &#x2F;mnt&#x2F;etc&#x2F;fstab 确保没有错误</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img   src=&quot;https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/archlinux-vert-dark.svg&quot; &gt;&lt;/p&gt;
+&lt;p&gt;官网: &lt;a class=&quot;link&quot;   h</summary>
+      
+    
+    
+    
+    
+    <category term="Linux" scheme="https://www.chaptsand.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c盘分多大</title>
+    <link href="https://www.chaptsand.top/posts/8f90ce31.html"/>
+    <id>https://www.chaptsand.top/posts/8f90ce31.html</id>
+    <published>2021-10-27T04:07:50.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>SSD不提倡分区，但是习惯了把文件数据啥的和系统分开放。即使系统崩了，重装也不用动别的盘，所以还是坚持单硬盘分区<br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/image.3rlkdl2qp9e0.png" ><br>装上了win11正式版，一番配置之后发现C盘分小了:(<br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/c.4qgl6cq2azg0.png" ><br>60G平时注意点虽然够用，但是得时常清理来着<br>对于懒人来说，还是100G比较舒服<br>不说了，格式化再来一遍</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;SSD不提倡分区，但是习惯了把文件数据啥的和系统分开放。即使系统崩了，重装也不用动别的盘，所以还是坚持单硬盘分区&lt;br&gt;&lt;img   src=&quot;https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/i</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>gcp配置记录</title>
+    <link href="https://www.chaptsand.top/posts/d6b069ed.html"/>
+    <id>https://www.chaptsand.top/posts/d6b069ed.html</id>
+    <published>2021-10-26T03:22:27.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-开启第三方SSH登录"><a href="#1-开启第三方SSH登录" class="headerlink" title="1 开启第三方SSH登录"></a>1 开启第三方SSH登录</h3><span id="more"></span><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sed -i <span class="string">&#x27;s/#PermitRootLogin prohibit-password/PermitRootLogin yes/g&#x27;</span> /etc/ssh/sshd_config</span><br><span class="line">$ sed -i <span class="string">&#x27;s/PasswordAuthentication no/PasswordAuthentication yes/g&#x27;</span> /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure><h3 id="2-添加用户"><a href="#2-添加用户" class="headerlink" title="2 添加用户"></a>2 添加用户</h3><p><code>$ adduser chaptsand</code><br>Or<br><code>$ useradd -m -s /bin/bash chaptsand</code></p><h3 id="3-授予sudo权限"><a href="#3-授予sudo权限" class="headerlink" title="3 授予sudo权限"></a>3 授予sudo权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">tee</span> /etc/sudoers.d/chaptsand &lt;&lt;&lt; <span class="string">&#x27;chaptsand ALL=(ALL) ALL&#x27;</span></span><br><span class="line">$ <span class="built_in">chmod</span> 440 /etc/sudoers.d/chaptsand</span><br></pre></td></tr></table></figure><h3 id="4-Oh-my-zsh"><a href="#4-Oh-my-zsh" class="headerlink" title="4 Oh my zsh"></a>4 Oh my zsh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure><h3 id="5-zsh-autosuggestions"><a href="#5-zsh-autosuggestions" class="headerlink" title="5 zsh-autosuggestions"></a>5 zsh-autosuggestions</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git://github.com/zsh-users/zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;1-开启第三方SSH登录&quot;&gt;&lt;a href=&quot;#1-开启第三方SSH登录&quot; class=&quot;headerlink&quot; title=&quot;1 开启第三方SSH登录&quot;&gt;&lt;/a&gt;1 开启第三方SSH登录&lt;/h3&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>arrow</title>
+    <link href="https://www.chaptsand.top/posts/d837ee3e.html"/>
+    <id>https://www.chaptsand.top/posts/d837ee3e.html</id>
+    <published>2021-10-18T15:08:02.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Arrow-12.0 For UMI Unofficial</p><p>Changelog for 20211018 version:</p><ul><li>First Android 12 release.</li></ul><p>Notice:</p><ul><li>Need Stable 12.5.8 firmware.</li><li>Use the old LR Team twrp if u want to sideload magisk, etc. Any other TWRP won’t work!</li></ul><p>Known issues:</p><ul><li>WFD doesn’t work.</li><li>SELinux status is permissive.</li></ul><p>Download:<br><a class="link"   href="https://drive.google.com/file/d/12flI0tFeEQLeQHnie3JQBWgMs7bZFACT/view?usp=sharing" >Gdrive<i class="fas fa-external-link-alt"></i></a></p><p>Screenshot:<br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/arrow-12.0-3.jpg" ><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/arrow-12.0-4.jpg" ><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/arrow-12.0-5.jpg" ><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/arrow-12.0-7.jpg" ><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/arrow-12.0-8.jpg" ><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/arrow-12.0-9.jpg" ></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Arrow-12.0 For UMI Unofficial&lt;/p&gt;
+&lt;p&gt;Changelog for 20211018 version:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;First Android 12 release.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Notice:&lt;/p&gt;
+&lt;ul</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Pixel Experience For UMI</title>
+    <link href="https://www.chaptsand.top/posts/4ad97f8e.html"/>
+    <id>https://www.chaptsand.top/posts/4ad97f8e.html</id>
+    <published>2021-09-20T09:39:59.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="PixelExperience-11-Plus-for-UMI-Final"><a href="#PixelExperience-11-Plus-for-UMI-Final" class="headerlink" title="PixelExperience 11 Plus for UMI Final"></a>PixelExperience 11 Plus for UMI Final</h3><h4 id="编译日期：21-11-14"><a href="#编译日期：21-11-14" class="headerlink" title="编译日期：21&#x2F;11&#x2F;14"></a>编译日期：21&#x2F;11&#x2F;14</h4><p>更新日志：</p><ul><li>提高系统稳定性</li><li>优化系统流畅度</li></ul><p>链接：<a class="link"   href="https://github.com/chaptsand/android_device_xiaomi_umi/releases/download/11.0-oct/PixelExperience_Plus_umi-11.0-20211014-0839-UNOFFICIAL.zip" > PixelExperience_Plus_umi-11.0-20211014-0839-UNOFFICIAL.zip<i class="fas fa-external-link-alt"></i></a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;PixelExperience-11-Plus-for-UMI-Final&quot;&gt;&lt;a href=&quot;#PixelExperience-11-Plus-for-UMI-Final&quot; class=&quot;headerlink&quot; title=&quot;PixelExperience 11</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Typecho博客迁移至转换Hexo</title>
+    <link href="https://www.chaptsand.top/posts/ca31b60c.html"/>
+    <id>https://www.chaptsand.top/posts/ca31b60c.html</id>
+    <published>2021-09-06T10:46:55.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>1202年了，我终于还是换到了Hexo ‘-’<br>其实我对这个框架并不陌生，早就有所了解，也试着搭建过，但是觉得不喜欢<br>每次更新发布都需要依赖Node.js环境编译静态资源，另外就是如果放Github Page的话访问速度实在有亿点点慢<br>在这之前本来打算趁着假期在就家，给闲置的电视盒子兼软路由兼游戏机的斐讯N1盒子装个armbian,在上面搭建typocho的，而且我连Ipv6 DDNS解析都弄好了，外网也能访问博客。不过有个缺点就是，域名解析ipv6地址之后只能用ipv6网络访问，那可不行啊。虽然套个cloudflare的免费cdn就可以解决访问问题，但是经过渣渣cdn线路解析后访问速度实在慢的离谱。寻思弄个国内的cdn吧，而且我又拍云账户本来是还有余额的，但在我服务器挂掉的这段时间，域名的备案也掉了。国内的CDN一般要求加速域名要有备案。。。<br>还有一个只要原因就是主题，我实在是没能找到比较中意的Hexo主题，直到我看见Keep @爱心<br>以及这个<br><a class="link"   href="https://juejin.cn/post/6943895271751286821" >如何使用 GitHub Actions 自动部署 Hexo 博客<i class="fas fa-external-link-alt"></i></a><br>这可太方便了吧，只要把源文件push到github就会自动编译成静态资源<br>然后试了下keep主题自带的cdn加速，效果竟意外地好，国内网络也基本上秒开<br>这下可了，咱搬<br>首要问题就是，如何把typecho的文章提取出来，文章数据都在sql数据库里<br>一番搜索之后发现这个项目<br><a class="link"   href="https://github.com/NewbMiao/typecho2Hexo" >typecho2Hexo<i class="fas fa-external-link-alt"></i></a><br>问题又来了，这得连接到一个存在本地的数据库，那咋怎<br>当然是开一台服务器，搭个宝塔，导入数据库备份，再操作咯（逃<br>花钱是不可能的<br>我当然选择在本地搭个宝塔不就完了吗<br><a class="link"   href="https://www.bt.cn/" >宝塔官网<i class="fas fa-external-link-alt"></i></a><br>然后就是安装LNMP环境，phphmyadmin导入备份的typecho数据库等常规操作<br>下载typecho2Hexo脚本<br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/tepecho2hexo.443g4narvdmo.png"  alt="tepecho2hexo"><br>解压后cd进入文件夹<br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/tepecho2hexo.6olsno8sby4g.png" ><br>将用户名密码数据库名表前缀改成自己数据库的<br>接着</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php converter.php</span><br></pre></td></tr></table></figure><p><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/wq.1016idqtasm8.png" ><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/bt.6mywxa63iq2o.png" ></p><p>搞定</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;1202年了，我终于还是换到了Hexo ‘-’&lt;br&gt;其实我对这个框架并不陌生，早就有所了解，也试着搭建过，但是觉得不喜欢&lt;br&gt;每次更新发布都需要依赖Node.js环境编译静态资源，另外就是如果放Github Page的话访问速度实在有亿点点慢&lt;br&gt;在这之前本来打算趁着</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Paranoid Android Ruby Beta 4</title>
+    <link href="https://www.chaptsand.top/posts/6099821d.html"/>
+    <id>https://www.chaptsand.top/posts/6099821d.html</id>
+    <published>2021-09-05T11:54:59.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/pa-ruby-umi.jpg" ></p><p><strong>Paranoid Android 是一个CAF based的自定义ROM，旨在扩展系统，致力于增强 Android 现有的美感，并遵循 Google 为 AOSP项目提出的设计理念。</strong></p><h4 id="机型：-小米10-umi"><a href="#机型：-小米10-umi" class="headerlink" title="机型： 小米10 umi"></a>机型： 小米10 umi</h4><h4 id="编译日期：-21-09-08"><a href="#编译日期：-21-09-08" class="headerlink" title="编译日期： 21&#x2F;09&#x2F;08"></a>编译日期： 21&#x2F;09&#x2F;08</h4><h4 id="Selinux-状态：-enforcing"><a href="#Selinux-状态：-enforcing" class="headerlink" title="Selinux 状态： enforcing"></a>Selinux 状态： <code>enforcing</code></h4><h4 id="更新日志："><a href="#更新日志：" class="headerlink" title="更新日志："></a>更新日志：</h4><p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 2021-09-07 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p><ul><li>修复USB网络共享</li><li>禁用口袋模式</li><li>内核合并Linux stable 4.19.206</li><li>优化续航减少发热</li><li>人脸识别支持付款应用</li><li>完善人脸解锁自定义设置</li></ul><p>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; 2021-09-05 &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</p><ul><li>更改系统默认字体为Google Sans + 筑紫A丸</li><li>支持微信、支付宝指纹支付</li><li>提高SQLite读写性能</li><li>开启P3色域颜色模式（自动调节）</li><li>更新blobs至<code>LA.UM.9.12.r1-11500-SMxx50.0</code> &amp;&amp; <code>V12.5.7.0.RJBCNXM</code></li><li>开启AOD防烧屏机制</li><li>内核合并CAF上游tag <code>LA.UM.9.12.r1-12800-SMxx50.0</code> 和 Linux stable 4.19.205</li><li>增加了一些实用的自定义功能</li><li>美化系统界面</li></ul><h4 id="下载："><a href="#下载：" class="headerlink" title="下载："></a>下载：</h4><ul><li><strong>Vanilla版本： <a class="link"   href="https://github.com/chaptsand/platform_device_xiaomi_umi/releases/download/v4.0-beta/pa-ruby-4-umi-20210908-beta-vanilla.zip" >pa-ruby-4-umi-20210908-beta-vanilla.zip<i class="fas fa-external-link-alt"></i></a></strong></li><li><strong>Gapps版本：  <a class="link"   href="https://github.com/chaptsand/platform_device_xiaomi_umi/releases/download/v4.0-beta/pa-ruby-4-umi-20210908-beta-vanilla.zip" >pa-ruby-4-umi-20210907-beta-gapps.zip<i class="fas fa-external-link-alt"></i></a></strong></li></ul><p><strong><a class="link"   href="https://github.com/chaptsand/platform_device_xiaomi_umi/releases" >发布页面<i class="fas fa-external-link-alt"></i></a></strong></p><h4 id="Md5值校验"><a href="#Md5值校验" class="headerlink" title="Md5值校验:"></a>Md5值校验:</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">md5sum</span> pa-ruby-4-umi-20210908-beta-vanilla.zip 5355e382b1a67abb992d7bbe418b7251</span><br><span class="line">$ <span class="built_in">md5sum</span> pa-ruby-4-umi-20210907-beta-gapps.zip 8d9ec28d42dde62c475d0978821dc466</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img   src=&quot;https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/pa-ruby-umi.jpg&quot; &gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Paranoid Android 是一个CAF</summary>
+      
+    
+    
+    
+    <category term="diy" scheme="https://www.chaptsand.top/categories/diy/"/>
+    
+    
+    <category term="Android" scheme="https://www.chaptsand.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在Manjaro上驱动BCM94360系网卡</title>
+    <link href="https://www.chaptsand.top/posts/5b71d0ea.html"/>
+    <id>https://www.chaptsand.top/posts/5b71d0ea.html</id>
+    <published>2020-06-27T01:35:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>起因：因为折腾黑苹果，我将我电脑的网卡换成了博通BCM943360CS<br>Mac OS下免驱，Windows有现成驱动不过每次装完系统要自己装<br>很老的卡了，千兆速率，蓝牙4.1，总的来说勉强能用，比原装网卡强一些<br>当然咱也是Linux用户（逃</p><span id="more"></span><p>Ubuntu和Deepin，装好系统之后会检测到专有驱动，下载安装一下就能用了<br>但是在Arch系（Manjaro）上就得换个姿势了<br>装完系统，设置里找不到无线网络，也打不开无线开关<br>上操作</p><h3 id="1-更新系统软件"><a href="#1-更新系统软件" class="headerlink" title="1.更新系统软件"></a>1.更新系统软件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -Syu</span><br></pre></td></tr></table></figure><h3 id="2-安装对应的linux-headers"><a href="#2-安装对应的linux-headers" class="headerlink" title="2.安装对应的linux-headers"></a>2.安装对应的linux-headers</h3><ul><li>在系统设置-内核中查看自己的内核</li><li>然后安装对应的headers<br><code>sudo pacman -S linux-headers</code></li></ul><h3 id="3-安装博通网卡驱动"><a href="#3-安装博通网卡驱动" class="headerlink" title="3.安装博通网卡驱动"></a>3.安装博通网卡驱动</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S broadcom-wl-dkms</span><br></pre></td></tr></table></figure><h3 id="4-重启"><a href="#4-重启" class="headerlink" title="4.重启"></a>4.重启</h3><p>重启之后就可以打开Wifi上网了</p><p>文章参考：<a class="link"   href="https://rowe98.github.io/2019/07/19/bodcom_failure/" >论如何在linux上正确驱动博通网卡<i class="fas fa-external-link-alt"></i></a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;起因：因为折腾黑苹果，我将我电脑的网卡换成了博通BCM943360CS&lt;br&gt;Mac OS下免驱，Windows有现成驱动不过每次装完系统要自己装&lt;br&gt;很老的卡了，千兆速率，蓝牙4.1，总的来说勉强能用，比原装网卡强一些&lt;br&gt;当然咱也是Linux用户（逃&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="diy" scheme="https://www.chaptsand.top/categories/diy/"/>
+    
+    
+    <category term="Linux" scheme="https://www.chaptsand.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows引导修复</title>
+    <link href="https://www.chaptsand.top/posts/92ae578f.html"/>
+    <id>https://www.chaptsand.top/posts/92ae578f.html</id>
+    <published>2020-06-27T01:02:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果遇到windows丢了引导，且手边没有PE修复工具<br>插上Windows安装U盘，按住Shift + F10<br>一句命令行就搞定了 </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bcdboot c:\windows /l zh-cn</span><br></pre></td></tr></table></figure><p>不需要借助额外的工具</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;如果遇到windows丢了引导，且手边没有PE修复工具&lt;br&gt;插上Windows安装U盘，按住Shift + F10&lt;br&gt;一句命令行就搞定了 &lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gu</summary>
+      
+    
+    
+    
+    <category term="diy" scheme="https://www.chaptsand.top/categories/diy/"/>
+    
+    
+    <category term="Windows" scheme="https://www.chaptsand.top/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>动态分区刷GSI(通用镜像)的正确姿势</title>
+    <link href="https://www.chaptsand.top/posts/da8abb0.html"/>
+    <id>https://www.chaptsand.top/posts/da8abb0.html</id>
+    <published>2020-06-20T18:27:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、通用镜像-GSI-和动态分区"><a href="#一、通用镜像-GSI-和动态分区" class="headerlink" title="一、通用镜像(GSI)和动态分区"></a>一、通用镜像(GSI)和动态分区</h2><h3 id="通用镜像-GSI"><a href="#通用镜像-GSI" class="headerlink" title="通用镜像(GSI)"></a>通用镜像(GSI)</h3><p><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/gsi.png"  alt="GSI"></p><span id="more"></span><h3 id="动态分区"><a href="#动态分区" class="headerlink" title="动态分区"></a>动态分区</h3><p>Google在Android10开始引入了动态分区（Dynamic Partitions）<br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/dynamic_partitions.png"  alt="Dynamic Partitions"><br>简单来说，就是把原来的system , vendor , product还有odm分区整合到了一起，构成super分区 ，在刷入设备的时候动态调整system等分区的大小,这个改变给让我们刷机、修改system分区等操作带来了困难，在Twrp里挂载后并不能直接刷入分区镜像</p><h2 id="二、动态分区刷GSI的方法"><a href="#二、动态分区刷GSI的方法" class="headerlink" title="二、动态分区刷GSI的方法"></a>二、动态分区刷GSI的方法</h2><ul><li>针对以下内容，<ul><li>解锁Bootloader ,开启ADB调试后食用</li><li>适合具备相关刷机、救砖经验者进行尝试</li><li>你的设备因此损坏，与我没有关系</li></ul></li></ul><h3 id="方法１-使用动态系统更新（DSU"><a href="#方法１-使用动态系统更新（DSU" class="headerlink" title="方法１.使用动态系统更新（DSU)"></a>方法１.使用动态系统更新（DSU)</h3><blockquote><p>Goole介绍：<a class="link"   href="https://source.android.google.cn/devices/tech/ota/dynamic-system-updates?hl=zh-cn" >WhatIsDSU<i class="fas fa-external-link-alt"></i></a></p></blockquote><h4 id="步骤1-启用-DSU-功能标志"><a href="#步骤1-启用-DSU-功能标志" class="headerlink" title="步骤1.启用 DSU 功能标志"></a>步骤1.启用 DSU 功能标志</h4><p>安卓10正式版及以上，可以在开发者选项中Feature flags &gt; settings_dynamic_system 中启用该功能。国内系统UI大多隐藏了，可以尝试用下面的adb 命令开启：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell setprop persist.sys.fflag.override.settings_dynamic_system true</span><br></pre></td></tr></table></figure><h4 id="步骤2-安装前的准备"><a href="#步骤2-安装前的准备" class="headerlink" title="步骤2.安装前的准备"></a>步骤2.安装前的准备</h4><p>通过DSU安装的GSI需要是可直接刷写的raw格式镜像，在开始前先检查你的镜像是不是raw格式<br>linux或者mac系统可以用<code>file system.img</code>命令查看</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">file system.img</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">system.img: Linux rev 1.0 ext2 filesystem data, UUID=91180515-3f1c-501d-888d-6f81f7ca3301 (extents) (large files) (huge files)</span></span><br></pre></td></tr></table></figure><p>若返回值是这样的就是raw格式<br><strong>若为稀疏格式（simg），可以使用以下命令把system镜像转为raw格式镜像</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">simg2img system.img system_raw.img</span></span><br></pre></td></tr></table></figure><ul><li>一般gsi镜像都是simg格式，先检查转换</li></ul><h4 id="步骤3-将镜像打包为gz格式"><a href="#步骤3-将镜像打包为gz格式" class="headerlink" title="步骤3.将镜像打包为gz格式"></a>步骤3.将镜像打包为gz格式</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gzip -c system_raw.img &gt; system_raw.gz</span><br></pre></td></tr></table></figure><p>*也可以直接用压缩工具压缩为gzip压缩包</p><h4 id="步骤4-用adb推到手机内置储存"><a href="#步骤4-用adb推到手机内置储存" class="headerlink" title="步骤4.用adb推到手机内置储存"></a>步骤4.用adb推到手机内置储存</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push system_raw.gz /storage/emulated/0/Download/</span><br></pre></td></tr></table></figure><h4 id="步骤5-安装动态系统更新"><a href="#步骤5-安装动态系统更新" class="headerlink" title="步骤5.安装动态系统更新"></a>步骤5.安装动态系统更新</h4><ul><li>下面的命令要全部一起复制执行</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity \</span><br><span class="line">    -n com.android.dynsystem/com.android.dynsystem.VerificationActivity  \</span><br><span class="line">    -a android.os.image.action.START_INSTALL    \</span><br><span class="line">    -d file:///storage/emulated/0/Download/system_raw.gz  \</span><br><span class="line">    --el KEY_SYSTEM_SIZE $(du -b system_raw.img|cut -f1)  \</span><br><span class="line">    --el KEY_USERDATA_SIZE 8589934592</span><br></pre></td></tr></table></figure><p><strong>这里第五行的<code>$(du -b system_raw.img|cut -f1)</code>可直接用system_raw.img的大小代替，不然用windows刷会报错</strong><br>比如我的个system_raw.img的大小为2370265088</p><p><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/systemsize.png"  alt="systemimage size"></p><p>命令就改为</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb shell am start-activity \</span><br><span class="line">    -n com.android.dynsystem/com.android.dynsystem.VerificationActivity  \</span><br><span class="line">    -a android.os.image.action.START_INSTALL    \</span><br><span class="line">    -d file:///storage/emulated/0/Download/system_raw.gz  \</span><br><span class="line">    --el KEY_SYSTEM_SIZE 2370265088  \</span><br><span class="line">    --el KEY_USERDATA_SIZE 2370265088</span><br></pre></td></tr></table></figure><p>然后你就会看到状态栏有正在安装的动态更新的提示，安装完重启进入第二个系统</p><p>小米10出厂安卓10，必然是支持DSU的</p><p>你可以用此方法尝试安装phh的aosp gsi</p><h3 id="方法2-通过fastbootd刷入GSI镜像（推荐）"><a href="#方法2-通过fastbootd刷入GSI镜像（推荐）" class="headerlink" title="方法2.通过fastbootd刷入GSI镜像（推荐）"></a>方法2.通过fastbootd刷入GSI镜像（推荐）</h3><p><code>fastbootd</code>——用户空间中的fastboot<br><strong>注意，fastbootd和fastboot是两个不同的模式</strong><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/fastbootd.png"  alt="fastbootd"></p><ul><li>针对以下内容<ul><li>Android 10引入了 启动时验证 (AVB)，在刷写 GSI之前，先下载并刷入vbmeta.img以停用 AVB</li><li>以下步骤请使用最新版android-platform-tools进行操作</li><li>如果不知道说的是什么，建议先百度fastboot刷机</li></ul></li></ul><p><code>vbmeta.img</code>一般包含会随gsi镜像一起发布</p><h4 id="步骤1-重启到fastboot"><a href="#步骤1-重启到fastboot" class="headerlink" title="步骤1.重启到fastboot"></a>步骤1.重启到fastboot</h4><p>关机状态同时按电源+音量减 或者开启adb调试后<code>adb reboot bootloader</code></p><h4 id="步骤2-刷入vbmeta-img停用AVB验证"><a href="#步骤2-刷入vbmeta-img停用AVB验证" class="headerlink" title="步骤2.刷入vbmeta.img停用AVB验证"></a>步骤2.刷入vbmeta.img停用AVB验证</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot --disable-verification flash vbmeta vbmeta.img</span><br></pre></td></tr></table></figure><h4 id="步骤3-还原MIUI官方recovery"><a href="#步骤3-还原MIUI官方recovery" class="headerlink" title="步骤3.还原MIUI官方recovery"></a>步骤3.还原MIUI官方recovery</h4><p>目的是可以启动fastbootd<br>或者使用twrp里的用户空间fastboot也可以，注意如果twrp有这个功能可以不用刷回miui recovery</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash recovery recovery.img</span><br></pre></td></tr></table></figure><h4 id="步骤4-在fastboot模式下进入fastbootd模式"><a href="#步骤4-在fastboot模式下进入fastbootd模式" class="headerlink" title="步骤4.在fastboot模式下进入fastbootd模式"></a>步骤4.在fastboot模式下进入fastbootd模式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot reboot fastboot</span><br></pre></td></tr></table></figure><p><strong>一定是要通过fastboot命令运行这句，才能启动到fastbootd模式</strong></p><ul><li>到这里如果卡在waiting for any devices就是没有安装小米usb驱动，设备管理器会识别你的手机，右键更新驱动程序。<br> PS：<a class="link"   href="http://bigota.d.miui.com/tools/xiaomi_usb_driver.rar" >小米USB驱动<i class="fas fa-external-link-alt"></i></a></li></ul><h4 id="步骤5-刷入system镜像"><a href="#步骤5-刷入system镜像" class="headerlink" title="步骤5.刷入system镜像"></a>步骤5.刷入system镜像</h4><p>安装好驱动，进入fastbootd之后，这时候fastboot命令已经可以识别system分区了</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash system system.img</span><br></pre></td></tr></table></figure><h4 id="步骤6-清楚数据"><a href="#步骤6-清楚数据" class="headerlink" title="步骤6.清楚数据"></a>步骤6.清楚数据</h4><p>*会格式化data,防止加密（注意提前备份）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot -w</span><br></pre></td></tr></table></figure><h4 id="步骤7-重启系统"><a href="#步骤7-重启系统" class="headerlink" title="步骤7.重启系统"></a>步骤7.重启系统</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot reboot</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、通用镜像-GSI-和动态分区&quot;&gt;&lt;a href=&quot;#一、通用镜像-GSI-和动态分区&quot; class=&quot;headerlink&quot; title=&quot;一、通用镜像(GSI)和动态分区&quot;&gt;&lt;/a&gt;一、通用镜像(GSI)和动态分区&lt;/h2&gt;&lt;h3 id=&quot;通用镜像-GSI&quot;&gt;&lt;a href=&quot;#通用镜像-GSI&quot; class=&quot;headerlink&quot; title=&quot;通用镜像(GSI)&quot;&gt;&lt;/a&gt;通用镜像(GSI)&lt;/h3&gt;&lt;p&gt;&lt;img   src=&quot;https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/gsi.png&quot;  alt=&quot;GSI&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="diy" scheme="https://www.chaptsand.top/categories/diy/"/>
+    
+    
+    <category term="Android" scheme="https://www.chaptsand.top/tags/Android/"/>
+    
+    <category term="GSI" scheme="https://www.chaptsand.top/tags/GSI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Debian配置iptables防火墙</title>
+    <link href="https://www.chaptsand.top/posts/d3794e8f.html"/>
+    <id>https://www.chaptsand.top/posts/d3794e8f.html</id>
+    <published>2020-06-20T05:57:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前服务器上一直用的Cent OS，默认没有开启防火墙，不需要放行80 443等端口就可以http|https访问.最近换到Debian9之后发现https访问网页服务被拦截了，就研究了一下iptables防火墙的配置</p><span id="more"></span><h2 id="系统要求："><a href="#系统要求：" class="headerlink" title="系统要求："></a>系统要求：</h2><p>Debian6.x&#x2F;7.x及以上版本</p><h2 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a>配置步骤</h2><h3 id="1-首先确定你的系统已经安装Iptables"><a href="#1-首先确定你的系统已经安装Iptables" class="headerlink" title="1.首先确定你的系统已经安装Iptables"></a>1.首先确定你的系统已经安装Iptables</h3><p>打开SSH终端，输入 <code>whereis iptables</code><br>如果输出以下信息，说明你的系统已经安装了iptables</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@debian:~# whereis iptables</span><br><span class="line">iptables: /sbin/iptables /etc/iptables.rules /usr/share/iptables /usr/share/man/man8/iptables.8.gz</span><br><span class="line">root@debian:~#</span><br></pre></td></tr></table></figure><p>如果没有的话，先安装iptables<br><code>apt-get install iptables</code><br>###2.安装成功后查看iptables端口开放情况###</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@debian:~# iptables -L</span><br><span class="line">Chain INPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain FORWARD (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line"></span><br><span class="line">Chain OUTPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">root@debian:~#</span><br></pre></td></tr></table></figure><p>默认情况没有任何配置</p><h3 id="3-配置iptables"><a href="#3-配置iptables" class="headerlink" title="3.配置iptables"></a>3.配置iptables</h3><p>编辑配置文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/iptables.rules</span><br></pre></td></tr></table></figure><p>加入以下内容</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Generated by iptables-save</span></span><br><span class="line">*filter</span><br><span class="line">:INPUT ACCEPT [0:0]</span><br><span class="line">:FORWARD ACCEPT [0:0]</span><br><span class="line">:OUTPUT ACCEPT [0:0]</span><br><span class="line">-I INPUT -p tcp --dport 8888 -j ACCEPT</span><br><span class="line">-I INPUT -p udp --dport 8888 -j ACCEPT</span><br><span class="line">-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line">-A INPUT -p icmp -j ACCEPT</span><br><span class="line">-A INPUT -i lo -j ACCEPT</span><br><span class="line">-A INPUT -m state --state NEW -p tcp --dport 22 -j ACCEPT</span><br><span class="line">-A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT</span><br><span class="line">-A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT</span><br><span class="line"></span><br><span class="line">-A INPUT -j REJECT --reject-with icmp-host-prohibited</span><br><span class="line">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span><br><span class="line">COMMIT</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Completed</span></span><br></pre></td></tr></table></figure><p><code>ESC :wq</code>保存退出<br>这只是一个简单的模板，放行了tcp22 80 443端口，以及8888的tcp和udp端口<br>可自行修改</p><h3 id="4-加载iptables-rules规则"><a href="#4-加载iptables-rules规则" class="headerlink" title="4.加载iptables.rules规则"></a>4.加载iptables.rules规则</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">root@debian:~# iptables-restore &lt; /etc/iptables.rules</span><br><span class="line">root@debian:~# iptables -L</span><br><span class="line">Chain INPUT (policy ACCEPT)</span><br><span class="line">target     prot opt source               destination         </span><br><span class="line">ACCEPT     udp  --  anywhere             anywhere             udp dpt:8888</span><br><span class="line">ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:8888</span><br><span class="line">ACCEPT     all  --  anywhere             anywhere             state RELATED,ESTABLISHED</span><br><span class="line">ACCEPT     icmp --  anywhere             anywhere            </span><br><span class="line">ACCEPT     all  --  anywhere             anywhere            </span><br><span class="line">ACCEPT     tcp  --  anywhere             anywhere             state NEW tcp dpt:ssh</span><br><span class="line">ACCEPT     tcp  --  anywhere             anywhere             state NEW tcp dpt:http</span><br><span class="line">ACCEPT     tcp  --  anywhere             anywhere             state NEW tcp dpt:https</span><br><span class="line">REJECT     all  --  anywhere             anywhere             reject-with icmp-host-prohibited</span><br></pre></td></tr></table></figure><p>可以看到规则以及被加载了</p><h3 id="5-设置开机启动"><a href="#5-设置开机启动" class="headerlink" title="5.设置开机启动"></a>5.设置开机启动</h3><p><code>vim /etc/network/if-pre-up.d/iptables</code><br>加入</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">/sbin/iptables-restore &lt; /etc/iptables.rules</span><br></pre></td></tr></table></figure><p><code>ESC :wq</code> 保存退出</p><p><code>chmod +x /etc/network/if-pre-up.d/iptables</code></p><p>这样就搞定了，可以重启试试有没有正常加载</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@debian:~# reboot</span><br><span class="line">root@debian:~# iptables -L</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;之前服务器上一直用的Cent OS，默认没有开启防火墙，不需要放行80 443等端口就可以http|https访问.最近换到Debian9之后发现https访问网页服务被拦截了，就研究了一下iptables防火墙的配置&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="diy" scheme="https://www.chaptsand.top/categories/diy/"/>
+    
+    
+    <category term="Linux" scheme="https://www.chaptsand.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenCore使用自定义三码教程</title>
+    <link href="https://www.chaptsand.top/posts/29bb6c12.html"/>
+    <id>https://www.chaptsand.top/posts/29bb6c12.html</id>
+    <published>2020-05-06T05:53:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果你是使用别人配置好的EFI文件，那里面写的三码基本上已经被很多人使用了。如果你想登陆apple id的话，有可能会登陆不上</p><p>怎样改回自己的三码信息呢？</p><span id="more"></span><table><thead><tr><th>需要准备的</th></tr></thead><tbody><tr><td>SystemSerialNumber:</td></tr><tr><td>MLB:</td></tr><tr><td>SmUUID:</td></tr><tr><td>ROM:</td></tr></tbody></table><p>至于生成随机三码，可以参考这个教程</p><p><a href="https://sleele.com/2019/03/21/smbios/"><strong>为自己的黑苹果生成随机三码</strong></a></p><p>一、修改OpenCore配置文件config.plist</p><p>用<a href="https://github.com/corpnewt/ProperTree"><strong>ProperTree编辑器</strong></a>编辑<code>config.plist</code>，需要Python环境，如果没有<strong>先安装Python</strong><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/propertree.png"  alt="Propertree"></p><p><strong>Windows运行ProperTree.bat</strong><br><strong>Mac运行 ProperTree.command</strong></p><p><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/openfile.png"  alt="File-Open"><br>右上角导入config.plist文件<br>找到<strong>【Platfrominfo】</strong>项<br>删除<strong>【Datahub,PlatfromNVRAM,SMBIOS】</strong>三个子项（如果存在）<br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/Platfrominfo.png"  alt="Platfrominfo"></p><p>然后展开<strong>【Generic】</strong>，<br>修改<strong>【SystemSerialNumber, MLB,SmUUID,ROM】</strong>为自己的<br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/sm.png" ><br><strong>SmUUID前面的数可随机生成</strong>，<strong>后十二位</strong>要改为你<strong>网卡的Mac地址</strong><br>ROM其实就是网卡的Mac地址，<strong>即SmUUID后十二位和ROM要一致</strong></p><p>保存退出，替换EFI内的config.plist为你<strong>修改过</strong>的即可</p><p>本文参考：<a class="link"   href="https://sleele.com/2019/10/31/opencore-guide/#" >[2019&#x2F;11&#x2F;19更新]OpenCore快速导读<i class="fas fa-external-link-alt"></i></a></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;如果你是使用别人配置好的EFI文件，那里面写的三码基本上已经被很多人使用了。如果你想登陆apple id的话，有可能会登陆不上&lt;/p&gt;
+&lt;p&gt;怎样改回自己的三码信息呢？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="diy" scheme="https://www.chaptsand.top/categories/diy/"/>
+    
+    
+    <category term="Hackintosh" scheme="https://www.chaptsand.top/tags/Hackintosh/"/>
+    
+    <category term="黑苹果" scheme="https://www.chaptsand.top/tags/%E9%BB%91%E8%8B%B9%E6%9E%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fimo胶片摄影—书房</title>
+    <link href="https://www.chaptsand.top/posts/52b4a119.html"/>
+    <id>https://www.chaptsand.top/posts/52b4a119.html</id>
+    <published>2020-05-05T08:45:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/FIMO_1588667331180.JPG"  alt="吊灯"></p><span id="more"></span><p><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/FIMO_1588667297361.JPG"  alt="书橱"><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/FIMO_1588666878200.JPG"  alt="笔记本"><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/FIMO_1588666767949.JPG"  alt="笔记本"><br><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/FIMO_1588668150508.JPG"  alt="百乐78g+"></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img   src=&quot;https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/FIMO_1588667331180.JPG&quot;  alt=&quot;吊灯&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="图图" scheme="https://www.chaptsand.top/categories/%E5%9B%BE%E5%9B%BE/"/>
+    
+    
+    <category term="摄影" scheme="https://www.chaptsand.top/tags/%E6%91%84%E5%BD%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决yum更新报错 CentOS7</title>
+    <link href="https://www.chaptsand.top/posts/eaae739c.html"/>
+    <id>https://www.chaptsand.top/posts/eaae739c.html</id>
+    <published>2020-05-05T07:01:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>用centOS来做轻量级服务器的系统是比较舒服的,占用低，宝塔面板还有特殊优化</p><p>###建站第一件事就是先给阿里服务器重装个系统###<br>自带的定制系统多了很多用不到的组件，感觉很臃肿，遂自选重装了CentOS7。镜像市场找的，看介绍是原版镜像，但我感觉还是被改过的，不过好在没有阿里云盾那些组件</p><span id="more"></span><p>重装系统后，yum更新一下，发现报错了</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Error: initscripts conflicts with centos-release-7-3.1611.el7.centos.x86_64</span><br><span class="line">You could try using --skip-broken to work around the problem</span><br><span class="line">You could try running: rpm -Va --nofiles --nodigest</span><br></pre></td></tr></table></figure><p>看样子是这个软件包出问题了，遂想着卸载完事</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove -y initscripts</span><br></pre></td></tr></table></figure><p>执行成功但是更新还是报错，头更大了</p><p>正确的解决方式：修改yum配置文件，阻止yum更新内核与initscripts包<br><code>vim /etc/yum.conf</code></p><p><strong>在文件后面加上</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 更新的时候不更新内核</span><br><span class="line">exclude=kernel*</span><br><span class="line">exclude=centos-release*</span><br><span class="line">exclude=initscripts</span><br></pre></td></tr></table></figure><p><code>ESC :wq</code> 回车<br>退出保存</p><p>再执行<code>yum update -y</code>就不会报错了</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;用centOS来做轻量级服务器的系统是比较舒服的,占用低，宝塔面板还有特殊优化&lt;/p&gt;
+&lt;p&gt;###建站第一件事就是先给阿里服务器重装个系统###&lt;br&gt;自带的定制系统多了很多用不到的组件，感觉很臃肿，遂自选重装了CentOS7。镜像市场找的，看介绍是原版镜像，但我感觉还是被改过的，不过好在没有阿里云盾那些组件&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="diy" scheme="https://www.chaptsand.top/categories/diy/"/>
+    
+    
+    <category term="Linux" scheme="https://www.chaptsand.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>One night in Beijing (1)</title>
+    <link href="https://www.chaptsand.top/posts/529aa99b.html"/>
+    <id>https://www.chaptsand.top/posts/529aa99b.html</id>
+    <published>2020-05-02T07:28:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img   src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/Beijing.png" ></p><p> 2019年8月18日下午五点四十三分，我在历经了三十多个小时的火车旅程后到达了北京。</p><p>  最后的一个多小时，列车穿过西五环来到了三环内的北京西站，我看着窗外的建筑从砖瓦平房变成耸立的集群大厦。<strong>若非亲眼所见，我不会相信北京也有农村，看起来繁华和他们无关。</strong></p><span id="more"></span><p>到了站，同学小宇说已经到南广场等我了，过多的出站口给我们的见面增添了一些困难，我在好不容易找到他之后和他一起去了已经找好的民宿。在公交车上，我从一车的普通话里听出了北京话的不一样。<br>小宇是我在大学里交的朋友，黑龙江人。给我印象深刻的是第一次见面自我介绍时说喜欢读书，尤其是喜欢王小波的作品。我猜这个人会比较幽默，而且是带有点淡淡黑色的那种。<br>到了他提前找好的特价民宿。我仔细观察了这房子的成色，楼梯间转角处墙上贴了很多广告，被清理过但是还不如不清理，<strong>清理广告的人肯定不懂美学，不能体现出残缺的美</strong>。这种老式居民楼放在我老家的城市估计有十五年历史。在北京我想肯定是二十年以上了。<br>这个地方是小宇好不容易找到的，两百六一晚，这大概是附近最便宜的住处。屋里陈设很简单，两张床，床占据了屋内三分之二的空间，毕竟这间屋子主要的功能就是让人睡觉。一台可能和我年龄差不多的电视机，我没打开过，听小宇说能看，但是画面比较模糊。比较难得的是屋里装了一台空调，在这易热易流汗的时节，能派上很大用场。<br>我把行李放好，躺在床上准备睡会。小宇说他饿的不行了，就早上喝了一碗粥，一天还没吃饭。看到我来了很高兴，打算带我去王府井大街吃全聚德 。先前他打听了一下价格，两个人吃，加上些乱码七糟的东西差不多300元。在火车上没怎么吃东西的我也是饥肠辘辘，没和他说我不吃鸭。<br>我们坐晚高峰的地铁1号线穿过人民大会堂，到王府井站下车。出地铁，街边的路灯已经亮起。小宇说王府井肯定是以前一个人的名字。我想这人的名字可真难听啊，居然还被用来命名这个地方。<br>我和小宇顺着人流的方向，走在北京繁华的夜色中。各式各样的人说着各式各样话，<strong>也许这一辈子都不会有交集的人，在这一时刻，同成为王府井大街上的一个路人。</strong></p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img   src=&quot;https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/Beijing.png&quot; &gt;&lt;/p&gt;
+&lt;p&gt; 2019年8月18日下午五点四十三分，我在历经了三十多个小时的火车旅程后到达了北京。&lt;/p&gt;
+&lt;p&gt;  最后的一个多小时，列车穿过西五环来到了三环内的北京西站，我看着窗外的建筑从砖瓦平房变成耸立的集群大厦。&lt;strong&gt;若非亲眼所见，我不会相信北京也有农村，看起来繁华和他们无关。&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="随笔" scheme="https://www.chaptsand.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="https://www.chaptsand.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="旅游" scheme="https://www.chaptsand.top/tags/%E6%97%85%E6%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Win10去除桌面桌面快捷方式小箭头</title>
+    <link href="https://www.chaptsand.top/posts/46f6a79.html"/>
+    <id>https://www.chaptsand.top/posts/46f6a79.html</id>
+    <published>2020-04-11T05:36:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>每次重装系统都要去找一下代码 :@(想一想)<br>索性丢到这儿 :@(小眼睛) </p><span id="more"></span><p>#去除小箭头</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">reg add &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons&quot; /v 29 /d &quot;%systemroot%\system32\imageres.dll,197&quot; /t reg_sz /f</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">attrib -s -r -h &quot;%userprofile%\AppData\Local\iconcache.db&quot;</span><br><span class="line">del &quot;%userprofile%\AppData\Local\iconcache.db&quot; /f /q</span><br><span class="line">start explorer</span><br><span class="line">pause</span><br></pre></td></tr></table></figure><p>#恢复小箭头</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">reg delete &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Icons&quot; /v 29 /f</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">attrib -s -r -h &quot;%userprofile%\AppData\Local\iconcache.db&quot;</span><br><span class="line">del &quot;%userprofile%\AppData\Local\iconcache.db&quot; /f /q</span><br><span class="line">start explorer</span><br><span class="line">paus</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;每次重装系统都要去找一下代码 :@(想一想)&lt;br&gt;索性丢到这儿 :@(小眼睛) &lt;/p&gt;</summary>
+    
+    
+    
+    <category term="diy" scheme="https://www.chaptsand.top/categories/diy/"/>
+    
+    
+    <category term="Windows" scheme="https://www.chaptsand.top/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用Mac给安卓手机刷机</title>
+    <link href="https://www.chaptsand.top/posts/dbb9570f.html"/>
+    <id>https://www.chaptsand.top/posts/dbb9570f.html</id>
+    <published>2020-03-31T03:37:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这就需要用到一个工具 <code>android-platform-tools</code><br>android-platform-tools是安卓的SDK平台工具</p><blockquote><p>SDK 平台工具版本说明</p></blockquote><p>Android SDK 平台工具是 Android SDK 的一个组件。 它包含与 Android 平台进行交互的工具，例如 adb、fastboot 和 systrace。开发 Android 应用时需要使用这些工具。如果您想要解锁设备的引导加载程序并为其刷入新的系统映像，则同样需要使用这些工具。</p><p>在Windows使用，用CMD命令就可以啦<br>在Mac上其实更方便，连驱动都不用装<br>安装可以去<a class="link"   href="https://developer.android.google.cn/studio/releases/platform-tools" >android开发者网站<i class="fas fa-external-link-alt"></i></a>下载<br>或者用Mac包管理神器homebrew一句命令行就搞定了</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install android-platform-tools</span><br></pre></td></tr></table></figure><p><em><strong>手机到开发者选项打开ADB调试食用</strong></em></p><p>adb&#x2F;fastboot 常用命令</p><pre><code>ADB#重启到recovery/fastboot模式adb shell reboot recovery（fastboot）#启用ADB服务adb start-server #关闭ADB服务adb kill-server #列出ADB设备adb devices #连接局域网设备adb connect xxx.xxx.xxx.xxx(设备的局域网ip)fastboot#刷入recovery/system/boot//先切到目标文件夹，比如镜像在下载文件夹里//cd /Users/liqianimage/Downloadsfastboot flash recovery recovery.imgfastboot flash system system.imgfastboot flash boot boot.img</code></pre><p><strong>Mac上刷小米线刷包（代替Miflash）</strong><br>装好android-platform-tools<br>手机进入fastboot模式（关机按住电源和音量-），数据线连接电脑<br>解压线刷包</p><pre><code>#cd到线刷包目录cd /Users/liqianimage/Downloads/umi_images_V11.0.10.0.QJBCNXM_20200226输入sh (注意空格)把线刷包内的sh刷机脚本拖到终端里回车</code></pre><p>脚本运行，开始线刷</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;这就需要用到一个工具 &lt;code&gt;android-platform-tools&lt;/code&gt;&lt;br&gt;android-platform-tools是安卓的SDK平台工具&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SDK 平台工具版本说明&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p</summary>
+      
+    
+    
+    
+    <category term="diy" scheme="https://www.chaptsand.top/categories/diy/"/>
+    
+    
+    <category term="Mac OS" scheme="https://www.chaptsand.top/tags/Mac-OS/"/>
+    
+    <category term="Android" scheme="https://www.chaptsand.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何在身边只有一台手机的情况下给电脑重装系统</title>
+    <link href="https://www.chaptsand.top/posts/3795bd0c.html"/>
+    <id>https://www.chaptsand.top/posts/3795bd0c.html</id>
+    <published>2020-03-29T11:00:00.000Z</published>
+    <updated>2024-02-28T05:06:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>电脑系统突然崩了，身边又没有pe启动盘。送修是不可能送修的，这辈子都不可能送修。</strong></p><span id="more"></span><p>进不去系统咋办嘞？身边还没有第二台电脑可以做个启动U盘。<br>啦，正是前几天我刚经历了这样无奈的时刻。好在用手机成功救砖了，下面把经验分享出来。<br>可以尝试以下两种工具</p><p><strong>A.[Driverdroid]</strong><br><img   src="https://i.niupic.com/images/2020/03/29/7b0P.jpg"  alt="Driverdeoid"><br>需要root权限，对没有root权限的同学来说就不可以用啦。软件的使用也是比较简单，授予root权限之后，找到要引导的镜像，一路NEXT就可以了。</p><p><strong>B.[Etchdroid]</strong><br><img   src="https://i.niupic.com/images/2020/03/29/7b0Q.jpg"  alt="Etchdroid"></p><p>啦，软件标题上就说明了不需要root，那简直是很妙啊<br>贴个下载链接:<a class="link"   href="http://t.cn/A6ZfraVB" >兰奏云<i class="fas fa-external-link-alt"></i></a><br>项目地址:<a class="link"   href="https://github.com/EtchDroid/EtchDroid" >https://github.com/EtchDroid/EtchDroid<i class="fas fa-external-link-alt"></i></a></p><p>开始之前呢需要这几样东西<br>1.手机（这个肯定有啦）<br>2.Otg线（必须）<br>3.U盘  读卡器加TF卡也是可以的<br>4.下载一下.img格式的pe镜像</p><p>准备好了之后呢，就打开软件<br><img   src="https://i.niupic.com/images/2020/03/29/7b0S.jpg"  alt="点这个"><br>你看，这里明明写着写入iso的嘛，不过.iso真的是死也这不成功。我找了很多个.iso的pe镜像测试，都引导不起来。<br>也是找了好就才找到这个.img的pe镜像<br><img   src="https://i.niupic.com/images/2020/03/29/7b0X.jpg"  alt="选择引导镜像"></p><p>原贴地址:<a class="link"   href="https://www.coolapk.com/feed/17632027?shareKey=NDlkMmFhMDRlMGI0NWU4MDdkMjU~&shareUid=697466&shareFrom=com.coolapk.market_10.0.3" >酷安基佬的作品<i class="fas fa-external-link-alt"></i></a></p><p>然后选择USB驱动器<br><img   src="https://i.niupic.com/images/2020/03/29/7b11.jpg"  alt="点一下"></p><p>确认无误之后就点下面的图标<br><img   src="https://i.niupic.com/images/2020/03/29/7b13.jpg"  alt="确认"></p><p>然后会提示你会擦出U盘的数据（记得提前备份哦）<br>然后点写入镜像<br><img   src="https://i.niupic.com/images/2020/03/29/7b15.jpg"  alt="写入"></p><p>确认之后就会回到桌面，写入进度会在状态栏显示。<br>等写入成功之后，插上电脑，开机，选择U盘引导<br>Wow~Awsome 终于进pe了<br>电脑有救了<br>本篇完结</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;电脑系统突然崩了，身边又没有pe启动盘。送修是不可能送修的，这辈子都不可能送修。&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="diy" scheme="https://www.chaptsand.top/categories/diy/"/>
+    
+    
+    <category term="Android" scheme="https://www.chaptsand.top/tags/Android/"/>
+    
+  </entry>
+  
+</feed>
