@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Android,Linux,MacOS">
+    <meta name="description" content="No sorrow">
+    <meta name="author" content="ChaptSand">
+    
+    <title>
+        
+            PyTorch学习笔记-Week7 |
+        
+        ChaptSand&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/brands.min.css">
+    
+    <script>
+        (function () {
+            let theme = localStorage.getItem('KEEP-THEME-STATUS');
+            let classname = "";
+            if (!theme || (JSON.parse(theme).isAutoTheme)){
+                classname = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark-mode" : "light-mode";
+            }
+            else{
+                classname = JSON.parse(theme).isDark ? "dark-mode" : "light-mode";
+            }
+            document.documentElement.classList.add(classname);
+        })();
+    </script>
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"www.chaptsand.top","root":"/","language":"zh-CN"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#55efc4","title":"ChaptSand's blog","author":"ChaptSand","avatar":"https://dn-qiniu-avatar.qbox.me/avatar/4bcab1e3cac14853225d4cb6eed9bb2e","logo":"https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png","favicon":"https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png"},"menu":{"home":"/","archives":"/archives","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"摘取一颗海上星，||陪我终夜不孤寂。","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/chaptsand","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"chaptsand@gmail.com","telegram":"https://t.me/ChaptSand"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three","Trainee","Engineer","Architect"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"jHqQ8N0yNj2mbPtAvAA2TofG-gzGzoHsz","appkey":"Q05rqHhfkwmqRYgv9nel8ktH","server_urls":null,"placeholder":"让我来康康"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs","custom":{"enable":false,"url":null}},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","search_db_path":"keep-search.json","source_data":{"links":[{"name":"Slmie","link":"https://slmie.top/","description":"本当の声を響かせてよ","avatar":"https://img10.360buyimg.com/ddimg/jfs/t1/204395/22/4110/199291/612f1974E4e9ff3ce/c273e7cd7618b8a4.png"}]},"version":"4.3.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ChaptSand's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               ChaptSand&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        PyTorch学习笔记-Week7
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://dn-qiniu-avatar.qbox.me/avatar/4bcab1e3cac14853225d4cb6eed9bb2e">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ChaptSand</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-10-13 16:26:39</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Thu Jul 30 2026 07:36:45 GMT+0000">2026-07-30 15:36:45</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/DL-Pytorch/">DL, Pytorch</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>3.3k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>14 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>本周从计算机视觉 (CNN) 领域迈入了一个全新的领域：<strong>自然语言处理 (NLP)<strong>与</strong>循环神经网络（RNN）</strong>。</p>
+<p>核心挑战在于，神经网络不理解文字，只理解数字。首要任务就是学会如何将人类的语言“翻译”成机器能够计算的格式。</p>
+<p>通过古诗生成案例，从最基础的文本处理，到构建、训练、并最终实现一个能够生成古诗的循环神经网络 (RNN)</p>
+<h4 id="一：自然语言处理-NLP-入门"><a href="#一：自然语言处理-NLP-入门" class="headerlink" title="一：自然语言处理 (NLP) 入门"></a><strong>一：自然语言处理 (NLP) 入门</strong></h4><h5 id="1-1-核心翻译流程"><a href="#1-1-核心翻译流程" class="headerlink" title="1.1 核心翻译流程"></a><strong>1.1 核心翻译流程</strong></h5><ol>
+<li><strong>分词 (Tokenization)</strong>: 将一个完整的句子或段落，拆分成最小的语言单元（“词元”或“Token”）。对于中文，这通常是单个的汉字。</li>
+<li><strong>构建词汇表 (Vocabulary)</strong>: 收集所有在数据集中出现过的独立词元，并为每一个词元分配一个独一无二的整数ID。</li>
+<li><strong>数值化 (Numericalization)</strong>: 使用构建好的词汇表，将原始的词元序列转换成一个整数ID序列。</li>
+</ol>
+<h5 id="1-2-文本预处理-preprocess-poems-函数"><a href="#1-2-文本预处理-preprocess-poems-函数" class="headerlink" title="1.2 文本预处理 (preprocess_poems 函数)"></a><strong>1.2 文本预处理 (<code>preprocess_poems</code> 函数)</strong></h5><p>通过一个函数封装了所有预处理步骤，这是一种非常好的编程实践。</p>
+<ul>
+<li><p><strong>思考与讨论</strong>: 构建词汇表的两种方法：</p>
+<ol>
+<li>在循环中逐行读取，用 <code>set.update()</code> 逐行去重。</li>
+<li>先用 <code>&quot;&quot;.join(lines)</code> 将所有行合并成一个大字符串，然后用 <code>set()</code> 一次性去重。</li>
+</ol>
+<ul>
+<li><strong>结论</strong>: 第二种方法更简洁、更符合Python风格 (Pythonic)，并且通常效率更高。</li>
+</ul>
+</li>
+<li><p><strong>关键实现 (<code>poetry_generator_rnn.py</code>)</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">preprocess_poems</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="comment"># 1. 逐行读取，清洗数据 (移除标点和空白)</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        lines = [re.sub(<span class="string">f&quot;[，。？！、：]&quot;</span>, <span class="string">&quot;&quot;</span>, line.strip()) <span class="keyword">for</span> line <span class="keyword">in</span> f <span class="keyword">if</span> line.strip()]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2. 构建词汇表</span></span><br><span class="line">    <span class="comment"># a. 合并所有文本并去重</span></span><br><span class="line">    all_chars = <span class="built_in">sorted</span>(<span class="built_in">list</span>(<span class="built_in">set</span>(<span class="string">&quot;&quot;</span>.join(lines))))</span><br><span class="line">    <span class="comment"># b. 创建 id &lt;-&gt; word 映射</span></span><br><span class="line">    word2id = &#123;word : i <span class="keyword">for</span> i, word <span class="keyword">in</span> <span class="built_in">enumerate</span>(all_chars)&#125;</span><br><span class="line">    id2word = &#123;i : word <span class="keyword">for</span> i, word <span class="keyword">in</span> <span class="built_in">enumerate</span>(all_chars)&#125;</span><br><span class="line">    <span class="comment"># c. 添加未知词标记</span></span><br><span class="line">    word2id[<span class="string">&#x27;&lt;UNK&gt;&#x27;</span>] = <span class="built_in">len</span>(word2id)</span><br><span class="line">    id2word[<span class="built_in">len</span>(id2word)] = <span class="string">&#x27;&lt;UNK&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. 数值化</span></span><br><span class="line">    <span class="comment"># 使用嵌套列表推导式高效地将所有诗句转换为ID序列</span></span><br><span class="line">    id_seqs = [[word2id.get(char, word2id[<span class="string">&#x27;&lt;UNK&gt;&#x27;</span>]) <span class="keyword">for</span> char <span class="keyword">in</span> line] <span class="keyword">for</span> line <span class="keyword">in</span> lines]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> id_seqs, word2id, id2word</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h4 id="二：为语言模型构建数据管道"><a href="#二：为语言模型构建数据管道" class="headerlink" title="二：为语言模型构建数据管道"></a><strong>二：为语言模型构建数据管道</strong></h4><h5 id="2-1-自定义-Dataset-PoetryDataset"><a href="#2-1-自定义-Dataset-PoetryDataset" class="headerlink" title="2.1 自定义 Dataset - PoetryDataset"></a><strong>2.1 自定义 <code>Dataset</code> - <code>PoetryDataset</code></strong></h5><ul>
+<li><p><strong>核心任务</strong>: 将连续的诗歌文本，转换成适用于语言模型训练的 <code>(输入序列, 目标序列)</code> 数据对。</p>
+</li>
+<li><p><strong>实现方式</strong>: 使用<strong>滑动窗口 (Sliding Window)</strong> 的思想。</p>
+</li>
+<li><p><strong>关键实现 (<code>poetry_generator_rnn.py</code>)</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PoetryDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, id_seqs, seq_len</span>):</span><br><span class="line">        self.data = []</span><br><span class="line">        <span class="comment"># 遍历每一首独立的诗</span></span><br><span class="line">        <span class="keyword">for</span> id_seq <span class="keyword">in</span> id_seqs:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(id_seq) &lt; seq_len + <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="comment"># 在每一首诗内部创建滑动窗口</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(id_seq) - seq_len):</span><br><span class="line">                <span class="comment"># 输入序列 (features)</span></span><br><span class="line">                features = id_seq[i : i + seq_len]</span><br><span class="line">                <span class="comment"># 目标序列 (labels)，是输入序列向后错一位</span></span><br><span class="line">                labels = id_seq[i + <span class="number">1</span> : i + seq_len + <span class="number">1</span>]</span><br><span class="line">                self.data.append((features, labels))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, index</span>):</span><br><span class="line">        features, labels = self.data[index]</span><br><span class="line">        <span class="comment"># 关键：转换发生在 __getitem__ 中，实现“懒加载”</span></span><br><span class="line">        <span class="keyword">return</span> torch.tensor(features, dtype=torch.long), torch.tensor(labels, dtype=torch.long)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.data)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="2-2-getitem-中的“懒加载”-Lazy-Loading"><a href="#2-2-getitem-中的“懒加载”-Lazy-Loading" class="headerlink" title="2.2 __getitem__ 中的“懒加载” (Lazy Loading)"></a><strong>2.2 <code>__getitem__</code> 中的“懒加载” (Lazy Loading)</strong></h5><ul>
+<li><strong>思考</strong>: 为什么不像以前一样，在 <code>__init__</code> 中就把所有数据都转换成<code>torch.tensor</code>？</li>
+<li><strong>结论</strong>: 这是一种更高级、更节省内存的<strong>最佳实践</strong>。<ul>
+<li><code>__init__</code> 只存储轻量级的Python列表，几乎不消耗内存。</li>
+<li>真正的张量转换操作被推迟到 <code>__getitem__</code> 中。</li>
+<li>只有当 <code>DataLoader</code> 需要获取某个特定样本时，<code>__getitem__</code> 才会被调用，实现**“即时转换”**。</li>
+<li>这使得我们能够处理远超内存大小的超大型数据集。</li>
+</ul>
+</li>
+<li><strong>核心关系</strong>: 理解了 <code>DataLoader</code> 的工作机制——它就像一个图书管理员，隐式地、自动地调用 <code>Dataset</code> 的 <code>__getitem__</code> 方法来按批次“取书”。</li>
+</ul>
+<hr>
+<h5 id="2-3-张量创建：torch-tensor-vs-torch-LongTensor"><a href="#2-3-张量创建：torch-tensor-vs-torch-LongTensor" class="headerlink" title="2.3 张量创建：torch.tensor vs. torch.LongTensor"></a><strong>2.3 张量创建：<code>torch.tensor</code> vs. <code>torch.LongTensor</code></strong></h5><ul>
+<li><strong>思考</strong>: <code>torch.tensor(data, dtype=torch.long)</code> 和 <code>torch.LongTensor(data)</code> 有什么区别？</li>
+<li><strong>结论</strong>:<ul>
+<li><code>torch.LongTensor()</code> 是旧版的、特定类型的快捷函数。</li>
+<li><code>torch.tensor()</code> 是现代的、统一的、通用的张量构造函数。</li>
+<li>使用 <code>torch.tensor(..., dtype=...)</code> 的写法更清晰、更灵活，是<strong>官方推荐的最佳实践</strong>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="三：RNN模型架构与核心原理"><a href="#三：RNN模型架构与核心原理" class="headerlink" title="三：RNN模型架构与核心原理"></a><strong>三：RNN模型架构与核心原理</strong></h4><h5 id="3-1-核心组件-nn-RNN-nn-LSTM"><a href="#3-1-核心组件-nn-RNN-nn-LSTM" class="headerlink" title="3.1 核心组件 (nn.RNN, nn.LSTM)"></a><strong>3.1 核心组件 (<code>nn.RNN</code>, <code>nn.LSTM</code>)</strong></h5><ul>
+<li><p><strong><code>nn.RNN</code> vs. <code>nn.RNNCell</code></strong>:</p>
+<ul>
+<li><strong>思考与辨析</strong>: 深入探讨了这两者的区别。</li>
+<li><strong>结论</strong>:<ul>
+<li><code>nn.RNNCell</code> 是一个**“单个工作站”<strong>，只处理一个时间步的数据，需要我们</strong>手动编写<code>for</code>循环**来迭代整个序列。它提供了最高的灵活性，适用于需要在时间步之间进行复杂干预的高级研究。</li>
+<li><code>nn.RNN</code> 是一条**“自动化流水线”<strong>，它内部封装了循环逻辑，可以一次性处理整个序列。它更高效、更简洁，是</strong>绝大多数标准序列任务的首选**。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><code>nn.LSTM</code> (长短期记忆网络)</strong>:</p>
+<ul>
+<li>在实践中，选择使用<code>nn.LSTM</code>来替代基础的<code>nn.RNN</code>。LSTM通过引入“门控机制”（输入门、遗忘门、输出门），能够更好地捕捉长距离依赖关系，有效缓解了简单RNN的梯度消失&#x2F;爆炸问题，是现代NLP任务中更常用的基石。</li>
+</ul>
+</li>
+<li><p><strong>关键组件参数</strong>:</p>
+<ul>
+<li><code>input_size</code>: 输入序列中，<strong>每一个元素</strong>的特征维度。在当前项目中，这等于<strong>词嵌入的维度 (<code>embedding_dim</code>)</strong>。</li>
+<li><code>hidden_size</code>: RNN<strong>隐藏状态</strong>的维度，可以理解为模型的“记忆容量”。</li>
+<li><code>num_layers</code>: 堆叠的RNN层数。<code>num_layers &gt; 1</code>可以构建<strong>深层RNN</strong>，让网络学习到更抽象的时间模式。</li>
+<li><code>batch_first=True</code>: 一个至关重要的参数，它指定输入和输出张量的维度顺序为 <code>(批次大小, 序列长度, 特征数)</code>，这更直观，也是现代PyTorch代码的<strong>推荐实践</strong>。</li>
+</ul>
+<blockquote>
+<p><strong>关键实现</strong>:</p>
+</blockquote>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># --- 在模型中定义LSTM层 ---</span></span><br><span class="line">self.rnn = nn.LSTM(</span><br><span class="line">embedding_dim,</span><br><span class="line">hidden_size,</span><br><span class="line">num_layers,</span><br><span class="line">batch_first=<span class="literal">True</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></blockquote>
+</li>
+</ul>
+<h5 id="3-2-forward-方法：一个灵活的设计模式"><a href="#3-2-forward-方法：一个灵活的设计模式" class="headerlink" title="3.2 forward 方法：一个灵活的设计模式"></a><strong>3.2 <code>forward</code> 方法：一个灵活的设计模式</strong></h5><ul>
+<li><p><strong>思考与辨析</strong>:</p>
+<ul>
+<li><strong>问题</strong>: <code>forward</code>方法中是否需要手动初始化<code>hidden</code>状态？</li>
+<li><strong>结论</strong>: <strong>不应该</strong>。如果<code>hidden</code>状态为<code>None</code>，PyTorch的RNN层会<strong>自动创建一个全零的初始隐藏状态</strong>，并且其<code>batch_size</code>和<code>device</code>会自动匹配输入张量，这避免了因最后一个批次大小不匹配或设备不一致而导致的常见错误。</li>
+<li><strong>问题</strong>: <code>forward</code>方法的签名写成<code>forward(self, x, hidden=None)</code>是否规范？</li>
+<li><strong>结论</strong>: 这是<strong>最专业、最推荐的最佳实践</strong>。这个设计模式极其灵活，使得同一个模型可以：<ol>
+<li>在<strong>无状态</strong>的训练&#x2F;分类任务中，通过 <code>model(features)</code> 调用，让PyTorch自动处理<code>hidden</code>状态。</li>
+<li>在<strong>有状态</strong>的文本生成任务中，通过 <code>output, hidden = model(input, hidden)</code> 的循环调用，手动传递和更新<code>hidden</code>状态，以维持“记忆”的连贯性。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>关键实现 (<code>PoetryRNN</code>)</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># --- 灵活的forward方法实现 ---</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PoetryRNN</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, ...</span>):</span><br><span class="line">        <span class="comment"># ... (Embedding, LSTM, Linear layers) ...</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, hidden=<span class="literal">None</span></span>):</span><br><span class="line">        x = self.embed(x)</span><br><span class="line">        <span class="comment"># 将输入和（可能存在的）hidden状态传给RNN</span></span><br><span class="line">        x, hidden = self.rnn(x, hidden)</span><br><span class="line">        <span class="comment"># 将RNN所有时间步的输出都通过全连接层</span></span><br><span class="line">        x = self.fc(x)</span><br><span class="line">        <span class="keyword">return</span> x, hidden</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="3-3-RNN信息流：hidden-vs-output"><a href="#3-3-RNN信息流：hidden-vs-output" class="headerlink" title="3.3 RNN信息流：hidden vs output"></a><strong>3.3 RNN信息流：<code>hidden</code> vs <code>output</code></strong></h5><ul>
+<li><strong>思考与辨析</strong>:<ul>
+<li><strong>问题</strong>: “每一个output传给下一个cell作为hidden输入”，这个理解对吗？</li>
+<li><strong>结论</strong>: 这个理解只在<strong>单层RNN</strong>中成立。在<strong>多层RNN</strong>中，<code>hidden</code>和<code>output</code>有明确的分工：<ul>
+<li><strong><code>hidden state</code> (隐藏状态)</strong>: 负责将信息<strong>水平地</strong>传递给<strong>同一层</strong>的<strong>下一个时间步</strong>。它是层的“内部记忆”。</li>
+<li><strong><code>output</code></strong>: 指的是<strong>最后一层（最顶层）在每一个时间步</strong>的隐藏状态。它负责将信息<strong>垂直地</strong>传递出去，作为整个RNN模块的最终输出。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="四：训练与生成"><a href="#四：训练与生成" class="headerlink" title="四：训练与生成"></a><strong>四：训练与生成</strong></h4><h5 id="4-1-训练循环"><a href="#4-1-训练循环" class="headerlink" title="4.1 训练循环"></a><strong>4.1 训练循环</strong></h5><ul>
+<li><p><strong>梯度清零的位置</strong>:</p>
+<ul>
+<li><strong>思考</strong>: <code>optimizer.zero_grad()</code> 应该放在循环的开头还是末尾？</li>
+<li><strong>结论</strong>: 两种写法在功能上等价，但将其放在<strong>循环开头</strong>是更现代、更清晰的<strong>最佳实践</strong>。这符合“每一次迭代都是一个全新的开始，先擦干净黑板再写新东西”的逻辑。</li>
+</ul>
+</li>
+<li><p><strong>Seq-to-Seq损失计算</strong>:</p>
+<ul>
+<li><strong>问题</strong>: 在<code>PoetryDataset</code>中，<code>labels</code>的形状是 <code>[BATCH_SIZE, SEQ_LEN]</code>，而模型<code>outputs</code>的形状是 <code>[BATCH_SIZE, SEQ_LEN, VOCAB_SIZE]</code>。如何计算损失？</li>
+<li><strong>解决方案</strong>: <code>nn.CrossEntropyLoss</code>在处理这种时间序列任务时，期望的输入<code>outputs</code>形状是 <code>[BATCH_SIZE, VOCAB_SIZE, SEQ_LEN]</code>。因此，我们需要对模型的输出进行维度转换。</li>
+</ul>
+<blockquote>
+<p><strong>关键实现</strong>:</p>
+</blockquote>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># --- 训练循环中的损失计算 ---</span></span><br><span class="line">model.train()</span><br><span class="line"><span class="keyword">for</span> features, labels <span class="keyword">in</span> dataloader:</span><br><span class="line">features, labels = features.to(DEVICE), labels.to(DEVICE)</span><br><span class="line"></span><br><span class="line">optimizer.zero_grad()</span><br><span class="line">	outputs, _ = model(features) <span class="comment"># outputs: [B, S, V]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 交换SeqLen和Vocab_Size维度以匹配CrossEntropyLoss的要求</span></span><br><span class="line">	loss = criterion(outputs.transpose(<span class="number">1</span>, <span class="number">2</span>), labels)</span><br><span class="line"></span><br><span class="line">loss.backward()</span><br><span class="line">	optimizer.step()</span><br></pre></td></tr></table></figure></blockquote>
+</li>
+</ul>
+<h5 id="4-2-文本生成-generate-poem-函数"><a href="#4-2-文本生成-generate-poem-函数" class="headerlink" title="4.2 文本生成 (generate_poem 函数)"></a><strong>4.2 文本生成 (<code>generate_poem</code> 函数)</strong></h5><ul>
+<li><p><strong>核心原理</strong>: <strong>自回归 (Auto-regressive)</strong> 和 <strong>状态延续 (Stateful)</strong>。</p>
+<ol>
+<li><p>用“开头”的词或句子“预热”RNN，得到一个初始的<code>hidden</code>状态。</p>
+</li>
+<li><p>将最后一个词作为下一步的输入。</p>
+</li>
+<li><p>在循环中：</p>
+<p>a.  将当前词和上一步的hidden状态一起送入模型。</p>
+<p>b.  从模型输出的概率分布中，随机采样出下一个词的ID。</p>
+<p>c.  将这个新生成的词ID作为下一次循环的输入。</p>
+<p>d.  将模型返回的新的hidden状态保存，用于下一次循环。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>创造性采样 (Creative Sampling)</strong>:</p>
+<ul>
+<li><p><strong>问题</strong>: 如果总是选择概率最高的词（贪婪搜索），生成的文本会非常单调和重复。</p>
+</li>
+<li><p><strong>解决方案</strong>: 使用<strong>温度 (Temperature)</strong> 和 <strong>多项式采样 (<code>torch.multinomial</code>)</strong>。</p>
+<blockquote>
+<p><strong>关键实现</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># --- 带温度的随机采样 ---</span></span><br><span class="line"><span class="comment"># output是模型在当前步的logits输出, shape: [1, 1, vocab_size]</span></span><br><span class="line">output_dist = output.view(-<span class="number">1</span>).div(temperature).exp()</span><br><span class="line">next_id_tensor = torch.multinomial(output_dist, <span class="number">1</span>)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<p><code>temperature</code>值越低，采样结果越保守，接近贪婪搜索；值越高，结果越随机，更具创造性。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>结构化生成逻辑</strong>:</p>
+<ul>
+<li><strong>思考与调试</strong>: 最初尝试了一个非常复杂的单行<code>for</code>循环来控制诗句长度，但通过调试发现它在处理空<code>start_token</code>时存在<strong>边界bug</strong>。</li>
+<li><strong>最终方案</strong>: 采纳了一种更健壮、更清晰的逻辑，即在每个诗句生成前，<strong>显式地计算</strong>出还需要生成多少个字<code>num_chars_to_gen</code>，然后用一个简单的<code>for</code>循环来执行固定次数的生成。这完美地解决了所有边界问题。</li>
+</ul>
+<blockquote>
+<p><strong>关键实现</strong>:</p>
+</blockquote>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># --- 健壮的结构化生成循环 ---</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(line_num):</span><br><span class="line"><span class="keyword">for</span> j, interpunction <span class="keyword">in</span> <span class="built_in">enumerate</span>([<span class="string">&quot;，&quot;</span>, <span class="string">&quot;。\n&quot;</span>]):</span><br><span class="line">  <span class="comment"># 只有在诗歌最开头才计算偏移</span></span><br><span class="line">  offset = <span class="built_in">len</span>(poem) <span class="keyword">if</span> i == <span class="number">0</span> <span class="keyword">and</span> j == <span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">  num_chars_to_gen = line_length - offset</span><br><span class="line">  <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(num_chars_to_gen):</span><br><span class="line">      <span class="comment"># ... (执行一次单字生成) ...</span></span><br></pre></td></tr></table></figure></blockquote>
+</li>
+</ul>
+<h4 id="五：完整代码"><a href="#五：完整代码" class="headerlink" title="五：完整代码"></a><strong>五：完整代码</strong></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn, optim</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset, DataLoader</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">SEQ_LEN = <span class="number">24</span></span><br><span class="line">BATCH_SIZE = <span class="number">64</span></span><br><span class="line">EPOCHS = <span class="number">30</span></span><br><span class="line">LR = <span class="number">1e-3</span></span><br><span class="line">DEVICE = torch.device(<span class="string">&quot;cuda&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Using device: <span class="subst">&#123;DEVICE&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">preprocess_poems</span>(<span class="params">file_path</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        lines = [re.sub(<span class="string">f&quot;[，。？！、：]&quot;</span>, <span class="string">&quot;&quot;</span>, line.strip()) <span class="keyword">for</span> line <span class="keyword">in</span> f <span class="keyword">if</span> line.strip()]</span><br><span class="line">    </span><br><span class="line">    all_chars = <span class="built_in">sorted</span>(<span class="built_in">list</span>(<span class="built_in">set</span>(<span class="string">&quot;&quot;</span>.join(lines))))</span><br><span class="line"></span><br><span class="line">    word2id = &#123;word : i <span class="keyword">for</span> i, word <span class="keyword">in</span> <span class="built_in">enumerate</span>(all_chars)&#125;</span><br><span class="line">    id2word = &#123;i : word <span class="keyword">for</span> i, word <span class="keyword">in</span> <span class="built_in">enumerate</span>(all_chars)&#125;</span><br><span class="line">    word2id[<span class="string">&#x27;&lt;UNK&gt;&#x27;</span>] = <span class="built_in">len</span>(word2id)</span><br><span class="line">    id2word[<span class="built_in">len</span>(word2id)] = <span class="string">&#x27;&lt;UNK&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">    id_seqs = [[word2id.get(char, word2id[<span class="string">&#x27;&lt;UNK&gt;&#x27;</span>]) <span class="keyword">for</span> char <span class="keyword">in</span> line] <span class="keyword">for</span> line <span class="keyword">in</span> lines]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> id_seqs, word2id, id2word</span><br><span class="line"></span><br><span class="line">id_seqs, word2id, id2word = preprocess_poems(<span class="string">&#x27;../datasets/poems.txt&#x27;</span>)</span><br><span class="line">VOCAB_SIZE = <span class="built_in">len</span>(id2word)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PoetryDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, id_seqs, seq_len</span>):</span><br><span class="line">        self.data = []</span><br><span class="line">        <span class="keyword">for</span> id_seq <span class="keyword">in</span> id_seqs:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(id_seq) &lt; seq_len + <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(id_seq) - seq_len):</span><br><span class="line">                features = id_seq[i : i + seq_len]</span><br><span class="line">                labels = id_seq[i + <span class="number">1</span> : i + <span class="number">1</span> + seq_len]</span><br><span class="line">                self.data.append((features, labels))</span><br><span class="line">                </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, index</span>):</span><br><span class="line">        features, labels = self.data[index]</span><br><span class="line">        <span class="keyword">return</span> torch.tensor(features, dtype=torch.long), torch.tensor(labels, dtype=torch.long)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.data)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PoetryRNN</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, vocab_size, embedding_dim, hidden_size, num_layers=<span class="number">1</span></span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.embed = nn.Embedding(vocab_size, embedding_dim)</span><br><span class="line">        self.rnn = nn.LSTM(embedding_dim, hidden_size, num_layers, batch_first=<span class="literal">True</span>)</span><br><span class="line">        self.fc = nn.Linear(hidden_size, vocab_size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, hidden=<span class="literal">None</span></span>):</span><br><span class="line">        x = self.embed(x)</span><br><span class="line">        x, hidden = self.rnn(x, hidden)</span><br><span class="line">        x = self.fc(x)</span><br><span class="line">        <span class="keyword">return</span> x, hidden</span><br><span class="line"></span><br><span class="line">dataset = PoetryDataset(id_seqs, SEQ_LEN)</span><br><span class="line">dataloader = DataLoader(dataset=dataset, batch_size=BATCH_SIZE, shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">model = PoetryRNN(vocab_size=VOCAB_SIZE, embedding_dim=<span class="number">128</span>, hidden_size=<span class="number">256</span>, num_layers=<span class="number">2</span>).to(DEVICE)</span><br><span class="line">criterion = nn.CrossEntropyLoss()</span><br><span class="line">optimizer = optim.Adam(model.parameters(), lr=LR)</span><br><span class="line"></span><br><span class="line">model.train()</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(EPOCHS):</span><br><span class="line">    running_loss = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> features, labels <span class="keyword">in</span> dataloader:</span><br><span class="line">        features, labels = features.to(DEVICE), labels.to(DEVICE)</span><br><span class="line"></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        outputs, _ = model(features)</span><br><span class="line"></span><br><span class="line">        loss = criterion(outputs.transpose(<span class="number">1</span>, <span class="number">2</span>), labels)</span><br><span class="line"></span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">        running_loss += loss.item()</span><br><span class="line">    </span><br><span class="line">    avg_loss = running_loss / <span class="built_in">len</span>(dataloader)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;Epoch <span class="subst">&#123;epoch+<span class="number">1</span>&#125;</span>/<span class="subst">&#123;EPOCHS&#125;</span> | Loss <span class="subst">&#123;avg_loss:<span class="number">.4</span>f&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_poem</span>(<span class="params">model, start_token, line_length=<span class="number">5</span>, line_num=<span class="number">2</span>, temperature=<span class="number">0.8</span></span>):</span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    poem = <span class="built_in">list</span>(start_token)</span><br><span class="line">    hidden = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">if</span> start_token:</span><br><span class="line">            input_seq = [word2id.get(w, word2id[<span class="string">&#x27;&lt;UNK&gt;&#x27;</span>]) <span class="keyword">for</span> w <span class="keyword">in</span> start_token]</span><br><span class="line">            input_tensor = torch.tensor([input_seq], dtype=torch.long).to(DEVICE)</span><br><span class="line">            _, hidden = model(input_tensor, <span class="literal">None</span>)</span><br><span class="line">            next_input_id = input_seq[-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            next_input_id = np.random.randint(<span class="number">0</span>, VOCAB_SIZE)</span><br><span class="line">            poem.append(id2word[next_input_id])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(line_num):</span><br><span class="line">            <span class="keyword">for</span> j, interpunction <span class="keyword">in</span> <span class="built_in">enumerate</span>([<span class="string">&quot;，&quot;</span>, <span class="string">&quot;。\n&quot;</span>]):</span><br><span class="line"></span><br><span class="line">                offset = <span class="built_in">len</span>(poem) <span class="keyword">if</span> i ==<span class="number">0</span> <span class="keyword">and</span> j ==<span class="number">0</span> <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">                num_chars_to_gen = line_length - offset</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(num_chars_to_gen):</span><br><span class="line">                    input_tensor = torch.tensor([[next_input_id]], dtype=torch.long).to(DEVICE)</span><br><span class="line">                    output, hidden = model(input_tensor, hidden)</span><br><span class="line"></span><br><span class="line">                    output_dist = output.view(-<span class="number">1</span>).div(temperature).exp()</span><br><span class="line">                    next_input_id = torch.multinomial(output_dist, <span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">                    next_char = id2word.get(<span class="built_in">int</span>(next_input_id.item()), <span class="string">&#x27;&lt;UNK&gt;&#x27;</span>)</span><br><span class="line">                    poem.append(next_char)</span><br><span class="line">    </span><br><span class="line">                poem.append(interpunction)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join(poem)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n--- 模型生成古诗 ---&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    start = <span class="string">&quot;春江&quot;</span></span><br><span class="line">    poem = generate_poem(model, start, line_length=<span class="number">5</span>, line_num=<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;(<span class="subst">&#123;i+<span class="number">1</span>&#125;</span>)\n<span class="subst">&#123;poem.strip()&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    start = <span class="string">&quot;明月&quot;</span></span><br><span class="line">    poem = generate_poem(model, start, line_length=<span class="number">7</span>, line_num=<span class="number">4</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;(<span class="subst">&#123;i+<span class="number">6</span>&#125;</span>)\n<span class="subst">&#123;poem.strip()&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+                    
+                </div>
+
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                PyTorch学习笔记-Week7
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                posts/360729a6.html
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    作者
+                </div>
+                <div class="content">ChaptSand</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    发布于
+                </div>
+                <div class="content">2025-10-13 16:26</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    许可
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">
+                        
+                            <i class="fa-brands fa-creative-commons"></i>
+                            <i class="fa-brands fa-creative-commons-by"></i>
+                            <i class="fa-brands fa-creative-commons-nc"></i>
+                            <i class="fa-brands fa-creative-commons-sa"></i>
+                        
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="复制版权信息" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/DL-Pytorch/">DL, Pytorch</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/posts/5a8a6c8d.html"
+                                   title="PyTorch学习笔记-Week6"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">PyTorch学习笔记-Week6</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'jHqQ8N0yNj2mbPtAvAA2TofG-gzGzoHsz',
+              appKey: 'Q05rqHhfkwmqRYgv9nel8ktH',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '让我来康康',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%EF%BC%9A%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-NLP-%E5%85%A5%E9%97%A8"><span class="nav-text">一：自然语言处理 (NLP) 入门</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-%E6%A0%B8%E5%BF%83%E7%BF%BB%E8%AF%91%E6%B5%81%E7%A8%8B"><span class="nav-text">1.1 核心翻译流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-%E6%96%87%E6%9C%AC%E9%A2%84%E5%A4%84%E7%90%86-preprocess-poems-%E5%87%BD%E6%95%B0"><span class="nav-text">1.2 文本预处理 (preprocess_poems 函数)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%EF%BC%9A%E4%B8%BA%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%AE%A1%E9%81%93"><span class="nav-text">二：为语言模型构建数据管道</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E8%87%AA%E5%AE%9A%E4%B9%89-Dataset-PoetryDataset"><span class="nav-text">2.1 自定义 Dataset - PoetryDataset</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-getitem-%E4%B8%AD%E7%9A%84%E2%80%9C%E6%87%92%E5%8A%A0%E8%BD%BD%E2%80%9D-Lazy-Loading"><span class="nav-text">2.2 __getitem__ 中的“懒加载” (Lazy Loading)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-%E5%BC%A0%E9%87%8F%E5%88%9B%E5%BB%BA%EF%BC%9Atorch-tensor-vs-torch-LongTensor"><span class="nav-text">2.3 张量创建：torch.tensor vs. torch.LongTensor</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%EF%BC%9ARNN%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">三：RNN模型架构与核心原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6-nn-RNN-nn-LSTM"><span class="nav-text">3.1 核心组件 (nn.RNN, nn.LSTM)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-forward-%E6%96%B9%E6%B3%95%EF%BC%9A%E4%B8%80%E4%B8%AA%E7%81%B5%E6%B4%BB%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.2 forward 方法：一个灵活的设计模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-RNN%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%9Ahidden-vs-output"><span class="nav-text">3.3 RNN信息流：hidden vs output</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%EF%BC%9A%E8%AE%AD%E7%BB%83%E4%B8%8E%E7%94%9F%E6%88%90"><span class="nav-text">四：训练与生成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E8%AE%AD%E7%BB%83%E5%BE%AA%E7%8E%AF"><span class="nav-text">4.1 训练循环</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90-generate-poem-%E5%87%BD%E6%95%B0"><span class="nav-text">4.2 文本生成 (generate_poem 函数)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%EF%BC%9A%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-text">五：完整代码</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ChaptSand</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%EF%BC%9A%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86-NLP-%E5%85%A5%E9%97%A8"><span class="nav-text">一：自然语言处理 (NLP) 入门</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-%E6%A0%B8%E5%BF%83%E7%BF%BB%E8%AF%91%E6%B5%81%E7%A8%8B"><span class="nav-text">1.1 核心翻译流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-%E6%96%87%E6%9C%AC%E9%A2%84%E5%A4%84%E7%90%86-preprocess-poems-%E5%87%BD%E6%95%B0"><span class="nav-text">1.2 文本预处理 (preprocess_poems 函数)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%EF%BC%9A%E4%B8%BA%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%AE%A1%E9%81%93"><span class="nav-text">二：为语言模型构建数据管道</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-%E8%87%AA%E5%AE%9A%E4%B9%89-Dataset-PoetryDataset"><span class="nav-text">2.1 自定义 Dataset - PoetryDataset</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-getitem-%E4%B8%AD%E7%9A%84%E2%80%9C%E6%87%92%E5%8A%A0%E8%BD%BD%E2%80%9D-Lazy-Loading"><span class="nav-text">2.2 __getitem__ 中的“懒加载” (Lazy Loading)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-%E5%BC%A0%E9%87%8F%E5%88%9B%E5%BB%BA%EF%BC%9Atorch-tensor-vs-torch-LongTensor"><span class="nav-text">2.3 张量创建：torch.tensor vs. torch.LongTensor</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%EF%BC%9ARNN%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">三：RNN模型架构与核心原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6-nn-RNN-nn-LSTM"><span class="nav-text">3.1 核心组件 (nn.RNN, nn.LSTM)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-forward-%E6%96%B9%E6%B3%95%EF%BC%9A%E4%B8%80%E4%B8%AA%E7%81%B5%E6%B4%BB%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-text">3.2 forward 方法：一个灵活的设计模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-RNN%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%9Ahidden-vs-output"><span class="nav-text">3.3 RNN信息流：hidden vs output</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%EF%BC%9A%E8%AE%AD%E7%BB%83%E4%B8%8E%E7%94%9F%E6%88%90"><span class="nav-text">四：训练与生成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-%E8%AE%AD%E7%BB%83%E5%BE%AA%E7%8E%AF"><span class="nav-text">4.1 训练循环</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90-generate-poem-%E5%87%BD%E6%95%B0"><span class="nav-text">4.2 文本生成 (generate_poem 函数)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%EF%BC%9A%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-text">五：完整代码</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/copyright-info.min.js"></script>
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

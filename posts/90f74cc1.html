@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Android,Linux,MacOS">
+    <meta name="description" content="No sorrow">
+    <meta name="author" content="ChaptSand">
+    
+    <title>
+        
+            使用WSL2安装配置深度学习环境 |
+        
+        ChaptSand&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/brands.min.css">
+    
+    <script>
+        (function () {
+            let theme = localStorage.getItem('KEEP-THEME-STATUS');
+            let classname = "";
+            if (!theme || (JSON.parse(theme).isAutoTheme)){
+                classname = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark-mode" : "light-mode";
+            }
+            else{
+                classname = JSON.parse(theme).isDark ? "dark-mode" : "light-mode";
+            }
+            document.documentElement.classList.add(classname);
+        })();
+    </script>
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"www.chaptsand.top","root":"/","language":"zh-CN"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#55efc4","title":"ChaptSand's blog","author":"ChaptSand","avatar":"https://dn-qiniu-avatar.qbox.me/avatar/4bcab1e3cac14853225d4cb6eed9bb2e","logo":"https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png","favicon":"https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png"},"menu":{"home":"/","archives":"/archives","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"摘取一颗海上星，||陪我终夜不孤寂。","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/chaptsand","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"chaptsand@gmail.com","telegram":"https://t.me/ChaptSand"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three","Trainee","Engineer","Architect"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"jHqQ8N0yNj2mbPtAvAA2TofG-gzGzoHsz","appkey":"Q05rqHhfkwmqRYgv9nel8ktH","server_urls":null,"placeholder":"让我来康康"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs","custom":{"enable":false,"url":null}},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","search_db_path":"keep-search.json","source_data":{"links":[{"name":"Slmie","link":"https://slmie.top/","description":"本当の声を響かせてよ","avatar":"https://img10.360buyimg.com/ddimg/jfs/t1/204395/22/4110/199291/612f1974E4e9ff3ce/c273e7cd7618b8a4.png"}]},"version":"4.3.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ChaptSand's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               ChaptSand&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        使用WSL2安装配置深度学习环境
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://dn-qiniu-avatar.qbox.me/avatar/4bcab1e3cac14853225d4cb6eed9bb2e">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ChaptSand</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-09-26 11:15:22</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Thu Jul 30 2026 07:36:45 GMT+0000">2026-07-30 15:36:45</span>
+                </span>
+            
+        
+
+        
+
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>5 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h3 id="1-为什么选择Windows-Subsystem-for-Linux（WSL）？"><a href="#1-为什么选择Windows-Subsystem-for-Linux（WSL）？" class="headerlink" title="1. 为什么选择Windows Subsystem for Linux（WSL）？"></a>1. 为什么选择Windows Subsystem for Linux（WSL）？</h3><p>在<strong>Linux系统</strong>下进行深度学习训练的<strong>效率</strong>通常高于<strong>Windows系统</strong>。经过测试，在 Windows Subsystem for Linux (WSL) 中的训练效率比直接在Windows上提升了大约<strong>25%</strong>。</p>
+<p><strong>实体Linux</strong>对普通用户来说有着<strong>诸多不便</strong>，例如有些软件只能在Windows中运行，导致需要频繁<strong>切换环境</strong>，同时<strong>数据同步</strong>和共享也较为麻烦。</p>
+<p>经过多个版本更新，微软的WSL2已非常完善。</p>
+<h4 id="WSL的优点："><a href="#WSL的优点：" class="headerlink" title="WSL的优点："></a>WSL的优点：</h4><ol>
+<li><strong>无需虚拟机或双系统</strong>：WSL允许用户在Windows环境中运行Linux命令行和应用程序，无需配置虚拟机或双启动系统。</li>
+<li><strong>高性能</strong>：尤其是从WSL 2版本开始，微软实现了完整的Linux内核支持，通过轻量化虚拟化技术提供接近原生Linux的性能体验。</li>
+<li><strong>集成性强</strong>：可以在Windows和Linux之间共享文件，互相调用应用程序。例如，WSL用户可以直接从Windows应用程序中调用Linux命令，反之亦然。</li>
+<li><strong>支持更多Linux发行版</strong>：WSL支持包括Arch Linux、Ubuntu、Debian、Fedora等多个Linux发行版，用户可以根据需求选择最适合的发行版。</li>
+</ol>
+<p>因此，我选择使用<strong>Arch Linux on WSL2</strong>来搭建深度学习开发环境（CUDA + cuDNN + Conda + PyTorch）</p>
+<h3 id="2-安装Arch-Linux-on-WSL2"><a href="#2-安装Arch-Linux-on-WSL2" class="headerlink" title="2. 安装Arch Linux on WSL2"></a>2. 安装Arch Linux on WSL2</h3><p>官方Wiki: <a class="link"   target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Install_Arch_Linux_on_WSL" >Arch Linux on WSL<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="2-1-安装WSL-Linux内核"><a href="#2-1-安装WSL-Linux内核" class="headerlink" title="2.1 安装WSL Linux内核"></a>2.1 安装WSL Linux内核</h4><p>对于<strong>Windows 11</strong>用户，可以通过一键安装来完成。</p>
+<p>在具有<strong>管理员权限</strong>的 <strong>Windows命令行Shell</strong>中执行以下命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl <span class="literal">--update</span></span><br></pre></td></tr></table></figure>
+
+<p>此命令会为当前系统安装WSL Linux内核支持并启用相关功能。安装完成后需要<strong>重启</strong>。通过<code>wsl -v</code>命令可以查看WSL支持是否已启用。</p>
+<h4 id="2-2-安装Arch-Linux"><a href="#2-2-安装Arch-Linux" class="headerlink" title="2.2 安装Arch Linux"></a>2.2 安装Arch Linux</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl <span class="literal">--install</span> <span class="literal">-d</span> archlinux <span class="literal">--location</span> D:\WSLOS\Arch</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li><code>-d</code>：发行版本</li>
+<li><code>--location</code>：自定义安装路径</li>
+</ul>
+<p>建议将安装路径设置为<strong>剩余空间较大的分区</strong>，因为系统体积会随着使用逐渐扩大。</p>
+<p>命令执行完毕后，会自动进入到<strong>Linux shell</strong>环境。</p>
+<p>Linux系统初始化及基础配置略过，以下为成功安装Arch Linux的截图：</p>
+<h3 id="3-安装并配置深度学习环境"><a href="#3-安装并配置深度学习环境" class="headerlink" title="3. 安装并配置深度学习环境"></a>3. 安装并配置深度学习环境</h3><h4 id="3-1-安装CUDA"><a href="#3-1-安装CUDA" class="headerlink" title="3.1 安装CUDA"></a>3.1 安装CUDA</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -S cuda</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，使用以下命令验证CUDA是否安装成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-安装cuDNN"><a href="#3-2-安装cuDNN" class="headerlink" title="3.2 安装cuDNN"></a>3.2 安装cuDNN</h4><p>从<a class="link"   target="_blank" rel="noopener" href="https://developer.nvidia.com/cudnn-downloads" >NVIDIA开发者网站<i class="fas fa-external-link-alt"></i></a>下载适用于Linux和相应CUDA版本的cuDNN。</p>
+<p>因为我使用的是Arch Linux，我选择的版本为 <code>v9.13.0 for Linux X86_64 and CUDA 12.x</code>（Tarball格式）。</p>
+<p>使用命令下载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://developer.download.nvidia.com/compute/cudnn/redist/cudnn/linux-x86_64/cudnn-linux-x86_64-9.13.0.50_cuda12-archive.tar.xz</span><br></pre></td></tr></table></figure>
+
+<p>下载完成后，进入文件所在目录并解压：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf cudnn*.tar.xz</span><br></pre></td></tr></table></figure>
+
+<p>解压完成后，将cuDNN的头文件（<code>include</code>）和库文件（<code>lib</code>）复制到系统目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mv</span> cudnn-*-archive/include/cudnn*.h /opt/cuda/include</span><br><span class="line">sudo <span class="built_in">mv</span> cudnn-*-archive/lib/libcudnn* /opt/cuda/lib64</span><br><span class="line">sudo <span class="built_in">chmod</span> a+r /opt/cuda/include/cudnn*.h /opt/cuda/lib64/libcudnn*</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-安装conda"><a href="#3-3-安装conda" class="headerlink" title="3.3 安装conda"></a>3.3 安装conda</h4><p>Conda 是一个开源的包管理系统和环境管理工具，可以在Windows、macOS和Linux上运行，适合安装和管理各种软件包及其依赖。</p>
+<h5 id="Anaconda-vs-Miniconda"><a href="#Anaconda-vs-Miniconda" class="headerlink" title="Anaconda vs Miniconda"></a>Anaconda vs Miniconda</h5><ul>
+<li><strong>Anaconda</strong>：包含多个常用的科学计算库（如numpy、scipy、pandas等），开箱即用，但体积大，更新较慢。</li>
+<li><strong>Miniconda</strong>：仅提供conda包管理器和Python，体积小，灵活性高，适合长期维护。</li>
+</ul>
+<h5 id="3-3-1-安装Miniconda"><a href="#3-3-1-安装Miniconda" class="headerlink" title="3.3.1 安装Miniconda"></a>3.3.1 安装Miniconda</h5><p>Arch AUR仓库提供了<code>miniconda3</code>，使用以下命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yay -S miniconda3</span><br></pre></td></tr></table></figure>
+
+<p>安装后，将conda的激活脚本添加到shell环境变量中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;[ -f /opt/miniconda3/etc/profile.d/conda.sh ] &amp;&amp; source /opt/miniconda3/etc/profile.d/conda.sh&quot;</span> &gt;&gt; ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-创建conda虚拟环境"><a href="#3-4-创建conda虚拟环境" class="headerlink" title="3.4 创建conda虚拟环境"></a>3.4 创建conda虚拟环境</h4><p>创建并激活一个名为<code>cuda_pytorch</code>的虚拟环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create --name cuda_pytorch python=3.13</span><br><span class="line">conda activate cuda_pytorch</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-安装PyTorch"><a href="#3-5-安装PyTorch" class="headerlink" title="3.5 安装PyTorch"></a>3.5 安装PyTorch</h4><p>访问PyTorch官网：<a class="link"   target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/" >PyTorch Get Started<i class="fas fa-external-link-alt"></i></a>。</p>
+<p>PyTorch官网不再推荐使用conda安装，而是只提供了pip安装方式。</p>
+<h5 id="PyTorch-官方停止发布-Conda-包"><a href="#PyTorch-官方停止发布-Conda-包" class="headerlink" title="PyTorch 官方停止发布 Conda 包"></a>PyTorch 官方停止发布 Conda 包</h5><p>PyTorch 团队宣布将停止发布依赖于 Anaconda 默认包的 Conda 构建版本，主要原因是 Conda 构建的维护成本过高，且与 PyPI 的下载量差异较大，性价比不高。详情参考 <a class="link"   target="_blank" rel="noopener" href="https://dev-discuss.pytorch.org/t/pytorch-deprecation-of-conda-nightly-builds/2590?utm_source=chatgpt.com" >PyTorch Developer Mailing List<i class="fas fa-external-link-alt"></i></a>。</p>
+<h4 id="3-5-1使用pip安装-GPU-版-PyTorch"><a href="#3-5-1使用pip安装-GPU-版-PyTorch" class="headerlink" title="3.5.1使用pip安装 GPU 版 PyTorch"></a>3.5.1使用pip安装 GPU 版 PyTorch</h4><p>由于 PyTorch 官方镜像在国内下载速度较慢，建议使用科学上网环境或更换国内镜像。经验证，目前除了南京大学，清华源、阿里源或其他高校镜像站均没有提供最新的 PyTorch 源码。</p>
+<p>同时，很多国内教程错误地将镜像源设置为默认的 CPU 版 PyTorch，导致安装的版本不支持 GPU。</p>
+<h5 id="正确安装方式："><a href="#正确安装方式：" class="headerlink" title="正确安装方式："></a>正确安装方式：</h5><p>要安装支持 <strong>CUDA 12.8</strong> 的 PyTorch（版本 2.8.0），可以使用官方的安装命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu128</span><br></pre></td></tr></table></figure>
+
+<p>对于国内用户，建议使用南京大学镜像站来加速下载：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install torch torchvision --index-url https://mirrors.nju.edu.cn/pytorch/whl/cu128</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6-验证PyTorch安装"><a href="#3-6-验证PyTorch安装" class="headerlink" title="3.6 验证PyTorch安装"></a>3.6 验证PyTorch安装</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;PyTorch version:&quot;</span>, torch.__version__)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;CUDA available:&quot;</span>, torch.cuda.is_available())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;CUDA version:&quot;</span>, torch.version.cuda)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;GPU name:&quot;</span>, torch.cuda.get_device_name(<span class="number">0</span>) <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;No GPU detected&quot;</span>)</span><br></pre></td></tr></table></figure>
+                    
+                </div>
+
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                使用WSL2安装配置深度学习环境
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                posts/90f74cc1.html
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    作者
+                </div>
+                <div class="content">ChaptSand</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    发布于
+                </div>
+                <div class="content">2025-09-26 11:15</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    许可
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">
+                        
+                            <i class="fa-brands fa-creative-commons"></i>
+                            <i class="fa-brands fa-creative-commons-by"></i>
+                            <i class="fa-brands fa-creative-commons-nc"></i>
+                            <i class="fa-brands fa-creative-commons-sa"></i>
+                        
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="复制版权信息" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/posts/81e7205c.html"
+                                   title="PyTorch 学习笔记-Week5"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">PyTorch 学习笔记-Week5</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/posts/652a6f9f.html"
+                                   title="rss"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">rss</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'jHqQ8N0yNj2mbPtAvAA2TofG-gzGzoHsz',
+              appKey: 'Q05rqHhfkwmqRYgv9nel8ktH',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '让我来康康',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Windows-Subsystem-for-Linux%EF%BC%88WSL%EF%BC%89%EF%BC%9F"><span class="nav-text">1. 为什么选择Windows Subsystem for Linux（WSL）？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#WSL%E7%9A%84%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="nav-text">WSL的优点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85Arch-Linux-on-WSL2"><span class="nav-text">2. 安装Arch Linux on WSL2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%AE%89%E8%A3%85WSL-Linux%E5%86%85%E6%A0%B8"><span class="nav-text">2.1 安装WSL Linux内核</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%AE%89%E8%A3%85Arch-Linux"><span class="nav-text">2.2 安装Arch Linux</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83"><span class="nav-text">3. 安装并配置深度学习环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%AE%89%E8%A3%85CUDA"><span class="nav-text">3.1 安装CUDA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%AE%89%E8%A3%85cuDNN"><span class="nav-text">3.2 安装cuDNN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%AE%89%E8%A3%85conda"><span class="nav-text">3.3 安装conda</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Anaconda-vs-Miniconda"><span class="nav-text">Anaconda vs Miniconda</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-%E5%AE%89%E8%A3%85Miniconda"><span class="nav-text">3.3.1 安装Miniconda</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E5%88%9B%E5%BB%BAconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-text">3.4 创建conda虚拟环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-%E5%AE%89%E8%A3%85PyTorch"><span class="nav-text">3.5 安装PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#PyTorch-%E5%AE%98%E6%96%B9%E5%81%9C%E6%AD%A2%E5%8F%91%E5%B8%83-Conda-%E5%8C%85"><span class="nav-text">PyTorch 官方停止发布 Conda 包</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-1%E4%BD%BF%E7%94%A8pip%E5%AE%89%E8%A3%85-GPU-%E7%89%88-PyTorch"><span class="nav-text">3.5.1使用pip安装 GPU 版 PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-text">正确安装方式：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-%E9%AA%8C%E8%AF%81PyTorch%E5%AE%89%E8%A3%85"><span class="nav-text">3.6 验证PyTorch安装</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ChaptSand</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Windows-Subsystem-for-Linux%EF%BC%88WSL%EF%BC%89%EF%BC%9F"><span class="nav-text">1. 为什么选择Windows Subsystem for Linux（WSL）？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#WSL%E7%9A%84%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="nav-text">WSL的优点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85Arch-Linux-on-WSL2"><span class="nav-text">2. 安装Arch Linux on WSL2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%AE%89%E8%A3%85WSL-Linux%E5%86%85%E6%A0%B8"><span class="nav-text">2.1 安装WSL Linux内核</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%AE%89%E8%A3%85Arch-Linux"><span class="nav-text">2.2 安装Arch Linux</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AE%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83"><span class="nav-text">3. 安装并配置深度学习环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%AE%89%E8%A3%85CUDA"><span class="nav-text">3.1 安装CUDA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%AE%89%E8%A3%85cuDNN"><span class="nav-text">3.2 安装cuDNN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%AE%89%E8%A3%85conda"><span class="nav-text">3.3 安装conda</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Anaconda-vs-Miniconda"><span class="nav-text">Anaconda vs Miniconda</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-1-%E5%AE%89%E8%A3%85Miniconda"><span class="nav-text">3.3.1 安装Miniconda</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E5%88%9B%E5%BB%BAconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-text">3.4 创建conda虚拟环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-%E5%AE%89%E8%A3%85PyTorch"><span class="nav-text">3.5 安装PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#PyTorch-%E5%AE%98%E6%96%B9%E5%81%9C%E6%AD%A2%E5%8F%91%E5%B8%83-Conda-%E5%8C%85"><span class="nav-text">PyTorch 官方停止发布 Conda 包</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-1%E4%BD%BF%E7%94%A8pip%E5%AE%89%E8%A3%85-GPU-%E7%89%88-PyTorch"><span class="nav-text">3.5.1使用pip安装 GPU 版 PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F%EF%BC%9A"><span class="nav-text">正确安装方式：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-%E9%AA%8C%E8%AF%81PyTorch%E5%AE%89%E8%A3%85"><span class="nav-text">3.6 验证PyTorch安装</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/copyright-info.min.js"></script>
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

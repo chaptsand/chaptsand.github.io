@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Android,Linux,MacOS">
+    <meta name="description" content="No sorrow">
+    <meta name="author" content="ChaptSand">
+    
+    <title>
+        
+            PyTorch 学习笔记-Week5 |
+        
+        ChaptSand&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/font/css/brands.min.css">
+    
+    <script>
+        (function () {
+            let theme = localStorage.getItem('KEEP-THEME-STATUS');
+            let classname = "";
+            if (!theme || (JSON.parse(theme).isAutoTheme)){
+                classname = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? "dark-mode" : "light-mode";
+            }
+            else{
+                classname = JSON.parse(theme).isDark ? "dark-mode" : "light-mode";
+            }
+            document.documentElement.classList.add(classname);
+        })();
+    </script>
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"www.chaptsand.top","root":"/","language":"zh-CN"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#55efc4","title":"ChaptSand's blog","author":"ChaptSand","avatar":"https://dn-qiniu-avatar.qbox.me/avatar/4bcab1e3cac14853225d4cb6eed9bb2e","logo":"https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png","favicon":"https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png"},"menu":{"home":"/","archives":"/archives","about":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"摘取一颗海上星，||陪我终夜不孤寂。","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/chaptsand","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":"chaptsand@gmail.com","telegram":"https://t.me/ChaptSand"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"announcement":null,"category":true,"tag":true,"post_datetime":"created"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three","Trainee","Engineer","Architect"]},"word_count":{"wordcount":true,"min2read":true},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":true,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false,"layout":"right"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":false},"comment":{"enable":true,"use":"valine","valine":{"appid":"jHqQ8N0yNj2mbPtAvAA2TofG-gzGzoHsz","appkey":"Q05rqHhfkwmqRYgv9nel8ktH","server_urls":null,"placeholder":"让我来康康"},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":true},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs","custom":{"enable":false,"url":null}},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","search_db_path":"keep-search.json","source_data":{"links":[{"name":"Slmie","link":"https://slmie.top/","description":"本当の声を響かせてよ","avatar":"https://img10.360buyimg.com/ddimg/jfs/t1/204395/22/4110/199291/612f1974E4e9ff3ce/c273e7cd7618b8a4.png"}]},"version":"4.3.0"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="ChaptSand's blog" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="https://cdn.jsdelivr.net/gh/chaptsand/blog_image_hosting@master/img/logo1.png">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               ChaptSand&#39;s blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                首页
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                归档
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/about">
+                                
+                                关于
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="menu-text-color fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            首页
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            归档
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/about">
+                            
+                            关于
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        PyTorch 学习笔记-Week5
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="https://dn-qiniu-avatar.qbox.me/avatar/4bcab1e3cac14853225d4cb6eed9bb2e">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">ChaptSand</span>
+                                
+                                    <span class="author-badge">Lv3</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-10-13 16:16:09</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Thu Jul 30 2026 07:36:45 GMT+0000">2026-07-30 15:36:45</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/DL-Pytorch/">DL, Pytorch</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+            <span class="meta-info-item post-wordcount">
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>2.5k 字</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-min2read">
+                <i class="icon fas fa-clock"></i>&nbsp;<span>11 分钟</span>
+            </span>
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p>这周学习了从零开始使用PyTorch构建一个完整机器学习项目的全过程。通过两个经典案例——PIMA糖尿病<strong>分类</strong>和泰坦尼克号生还预测<strong>分类</strong>，系统地学习了数据处理、模型构建、训练、评估和优化的核心技能。</p>
+<h2 id="1-核心概念与工作流"><a href="#1-核心概念与工作流" class="headerlink" title="1. 核心概念与工作流"></a>1. 核心概念与工作流</h2><h3 id="1-1-训练三元组：Epoch-Batch-Iteration"><a href="#1-1-训练三元组：Epoch-Batch-Iteration" class="headerlink" title="1.1 训练三元组：Epoch, Batch, Iteration"></a>1.1 训练三元组：Epoch, Batch, Iteration</h3><p>这是理解模型训练过程的基础。</p>
+<ul>
+<li><strong>Epoch (周期)</strong>: 指的是整个训练数据集被完整地、系统地过了一遍。</li>
+<li><strong>Batch-Size (批次大小)</strong>: 由于数据集太大无法一次性载入内存，我们将其分成小批次（batch）。Batch-Size就是每个批次中包含的样本数量。</li>
+<li><strong>Iteration (迭代)</strong>: 模型更新一次权重的过程。每处理一个batch的数据，就完成了一次迭代。</li>
+<li><strong>关系</strong>: <code>Iterations_per_Epoch = Total_Samples / Batch_Size</code></li>
+</ul>
+<h3 id="1-2-标准机器学习工作流"><a href="#1-2-标准机器学习工作流" class="headerlink" title="1.2 标准机器学习工作流"></a>1.2 标准机器学习工作流</h3><p>一个标准的项目遵循以下流程：</p>
+<ol>
+<li><strong>数据加载与探索 (EDA)</strong></li>
+<li><strong>数据预处理与清洗</strong></li>
+<li><strong>划分训练集&#x2F;验证集</strong></li>
+<li><strong>构建数据管道 (DataLoader)</strong></li>
+<li><strong>定义模型架构</strong></li>
+<li><strong>训练模型</strong></li>
+<li><strong>评估模型性能</strong></li>
+<li><strong>（可选）超参数调优</strong></li>
+<li><strong>（可选）对新数据进行预测</strong></li>
+</ol>
+<h2 id="2-数据处理与加载-Pandas-PyTorch"><a href="#2-数据处理与加载-Pandas-PyTorch" class="headerlink" title="2. 数据处理与加载 (Pandas &amp; PyTorch)"></a>2. 数据处理与加载 (Pandas &amp; PyTorch)</h2><h3 id="2-1-探索性数据分析-EDA"><a href="#2-1-探索性数据分析-EDA" class="headerlink" title="2.1 探索性数据分析 (EDA)"></a>2.1 探索性数据分析 (EDA)</h3><p>在接触任何数据集时，首先要了解它。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载数据</span></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;./datasets/titanic/train.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看前5行</span></span><br><span class="line"><span class="built_in">print</span>(df.head())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看数据结构、非空值数量和数据类型</span></span><br><span class="line"><span class="comment"># 这是发现缺失值和错误数据类型的关键步骤</span></span><br><span class="line">df.info()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看数值列的统计摘要</span></span><br><span class="line"><span class="built_in">print</span>(df.describe())</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-数据预处理"><a href="#2-2-数据预处理" class="headerlink" title="2.2 数据预处理"></a>2.2 数据预处理</h3><p>这是将原始数据转换为模型可用格式的关键步骤。</p>
+<h4 id="a-处理缺失值"><a href="#a-处理缺失值" class="headerlink" title="a. 处理缺失值"></a>a. 处理缺失值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对于数值型特征，用中位数填充更稳健</span></span><br><span class="line">age_median = df[<span class="string">&#x27;Age&#x27;</span>].median()</span><br><span class="line">df[<span class="string">&#x27;Age&#x27;</span>] = df[<span class="string">&#x27;Age&#x27;</span>].fillna(age_median)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于类别型特征，用众数填充</span></span><br><span class="line">embarked_mode = df[<span class="string">&#x27;Embarked&#x27;</span>].mode()[<span class="number">0</span>]</span><br><span class="line">df[<span class="string">&#x27;Embarked&#x27;</span>] = df[<span class="string">&#x27;Embarked&#x27;</span>].fillna(embarked_mode)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于缺失值过多的列，直接删除</span></span><br><span class="line">df = df.drop(<span class="string">&#x27;Cabin&#x27;</span>, axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="b-处理类别特征（独热编码）"><a href="#b-处理类别特征（独热编码）" class="headerlink" title="b. 处理类别特征（独热编码）"></a>b. 处理类别特征（独热编码）</h4><p>神经网络只能处理数字，因此文本特征需要转换。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># drop_first=True 用于避免多重共线性，是一种好习惯</span></span><br><span class="line">df = pd.get_dummies(df, columns=[<span class="string">&#x27;Sex&#x27;</span>, <span class="string">&#x27;Embarked&#x27;</span>], drop_first=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="c-特征选择"><a href="#c-特征选择" class="headerlink" title="c. 特征选择"></a>c. 特征选择</h4><p>删除与预测目标不相关的列。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = df.drop([<span class="string">&#x27;PassengerId&#x27;</span>, <span class="string">&#x27;Name&#x27;</span>, <span class="string">&#x27;Ticket&#x27;</span>], axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="d-特征缩放-Standardization"><a href="#d-特征缩放-Standardization" class="headerlink" title="d. 特征缩放 (Standardization)"></a>d. 特征缩放 (Standardization)</h4><p>将所有特征缩放到相似的范围，有助于模型更快、更稳定地收敛。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="comment"># 先划分数据</span></span><br><span class="line">X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=<span class="number">0.2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建scaler对象</span></span><br><span class="line">scaler = StandardScaler()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在训练集上fit_transform</span></span><br><span class="line">X_train = scaler.fit_transform(X_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在验证/测试集上只用transform</span></span><br><span class="line">X_val = scaler.transform(X_val)</span><br></pre></td></tr></table></figure>
+
+<h3 id="正确的顺序和做法"><a href="#正确的顺序和做法" class="headerlink" title="正确的顺序和做法"></a>正确的顺序和做法</h3><p>正确的流程应该是严格模拟真实世界：我们只能根据已有的训练数据来学习规律，然后将这些规律应用到未知的测试数据上。</p>
+<p><strong>正确的顺序是：1. 先分割，2. 后处理。</strong></p>
+<ol>
+<li><strong>先分割数据</strong>：将数据集划分为训练集和测试集。</li>
+<li><strong>拟合和转换训练集</strong>：在 <strong>仅有训练集</strong> (<code>x_train</code>) 上调用 <code>fit_transform()</code>。这一步会计算出只属于训练集的均值和标准差，并用它们来转换训练集。</li>
+<li><strong>仅转换测试集</strong>：使用<strong>同一个</strong>（已经在训练集上拟合好的）scaler，在测试集 (<code>x_test</code>) 上<strong>只调用</strong> <code>transform()</code>。这一步是用训练集的均值和标准差来转换测试集，以确保两边处理标准一致。</li>
+</ol>
+<h3 id="额外的重要提示：不要标准化标签"><a href="#额外的重要提示：不要标准化标签" class="headerlink" title="额外的重要提示：不要标准化标签"></a>额外的重要提示：不要标准化标签</h3><h3 id="2-3-PyTorch数据管道"><a href="#2-3-PyTorch数据管道" class="headerlink" title="2.3 PyTorch数据管道"></a>2.3 PyTorch数据管道</h3><h4 id="a-自定义-Dataset"><a href="#a-自定义-Dataset" class="headerlink" title="a. 自定义 Dataset"></a>a. 自定义 <code>Dataset</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TitanicDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, features, labels</span>):</span><br><span class="line">        <span class="comment"># 将NumPy数组转换为PyTorch张量</span></span><br><span class="line">        self.features = torch.tensor(features, dtype=torch.float32)</span><br><span class="line">        self.labels = torch.tensor(labels, dtype=torch.float32)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, index</span>):</span><br><span class="line">        <span class="comment"># 定义如何获取单个样本</span></span><br><span class="line">        <span class="keyword">return</span> self.features[index], self.labels[index]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># 返回数据集总长度</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.features)</span><br></pre></td></tr></table></figure>
+
+<h4 id="b-DataLoader"><a href="#b-DataLoader" class="headerlink" title="b. DataLoader"></a>b. <code>DataLoader</code></h4><p>将<code>Dataset</code>封装成一个可迭代对象，实现批处理和数据打乱。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"></span><br><span class="line">train_dataset = TitanicDataset(X_train, y_train)</span><br><span class="line">train_loader = DataLoader(dataset=train_dataset,</span><br><span class="line">                          batch_size=<span class="number">32</span>,</span><br><span class="line">                          shuffle=<span class="literal">True</span>) <span class="comment"># 打乱数据对训练很重要</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-模型构建与训练"><a href="#3-模型构建与训练" class="headerlink" title="3. 模型构建与训练"></a>3. 模型构建与训练</h2><h3 id="3-1-模型定义"><a href="#3-1-模型定义" class="headerlink" title="3.1 模型定义"></a>3.1 模型定义</h3><p>使用<code>nn.Module</code>定义模型结构，用<code>nn.Sequential</code>可以使结构更简洁。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Classifier</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, num_features</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.net = nn.Sequential(</span><br><span class="line">            nn.Linear(num_features, <span class="number">16</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Linear(<span class="number">16</span>, <span class="number">8</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Linear(<span class="number">8</span>, <span class="number">1</span>) <span class="comment"># 输出层，对于BCEWithLogitsLoss，输出原始logit</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.net(x)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-训练循环"><a href="#3-2-训练循环" class="headerlink" title="3.2 训练循环"></a>3.2 训练循环</h3><p>这是模型学习的核心。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化模型、损失函数和优化器</span></span><br><span class="line">model = Classifier(input_features)</span><br><span class="line">criterion = nn.BCEWithLogitsLoss() <span class="comment"># 适用于二分类</span></span><br><span class="line">optimizer = torch.optim.Adam(model.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line"></span><br><span class="line">model.train() <span class="comment"># 将模型设置为训练模式</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(EPOCHS):</span><br><span class="line">    <span class="keyword">for</span> features, labels <span class="keyword">in</span> train_loader:</span><br><span class="line">        <span class="comment"># 1. 前向传播</span></span><br><span class="line">        outputs = model(features)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 2. 计算损失</span></span><br><span class="line">        loss = criterion(outputs, labels)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 3. 反向传播与优化</span></span><br><span class="line">        optimizer.zero_grad() <span class="comment"># 清空之前的梯度</span></span><br><span class="line">        loss.backward()       <span class="comment"># 计算当前梯度</span></span><br><span class="line">        optimizer.step()      <span class="comment"># 更新权重</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-模型评估与实践技巧"><a href="#4-模型评估与实践技巧" class="headerlink" title="4. 模型评估与实践技巧"></a>4. 模型评估与实践技巧</h2><h3 id="4-1-评估循环"><a href="#4-1-评估循环" class="headerlink" title="4.1 评估循环"></a>4.1 评估循环</h3><p>在验证集上检查模型性能，全程不计算梯度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"></span><br><span class="line">model.<span class="built_in">eval</span>() <span class="comment"># 将模型设置为评估模式</span></span><br><span class="line">all_predictions = []</span><br><span class="line"><span class="keyword">with</span> torch.no_grad(): <span class="comment"># 在此代码块中不计算梯度</span></span><br><span class="line">    <span class="keyword">for</span> features, _ <span class="keyword">in</span> val_loader:</span><br><span class="line">        outputs = model(features)</span><br><span class="line">        predicted = (torch.sigmoid(outputs) &gt; <span class="number">0.5</span>).<span class="built_in">float</span>()</span><br><span class="line">        all_predictions.extend(predicted.numpy())</span><br><span class="line"></span><br><span class="line">accuracy = accuracy_score(y_val, all_predictions)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;验证集上的准确率: <span class="subst">&#123;accuracy*<span class="number">100</span>:<span class="number">.2</span>f&#125;</span>%&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-Kaggle提交流程"><a href="#4-2-Kaggle提交流程" class="headerlink" title="4.2 Kaggle提交流程"></a>4.2 Kaggle提交流程</h3><p>关键在于对<code>test.csv</code>应用<strong>完全相同</strong>的预处理流程。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 加载测试数据</span></span><br><span class="line">test_df = pd.read_csv(<span class="string">&#x27;test.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 应用所有预处理步骤 (填充缺失值、独热编码...)</span></span><br><span class="line"><span class="comment">#    关键：使用从训练集计算出的median/mode/scaler</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 对齐列 (重要！)</span></span><br><span class="line"><span class="comment">#    确保测试集的列与训练集的列完全一致</span></span><br><span class="line">test_df = test_df.reindex(columns=train_columns, fill_value=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 使用训练好的模型进行预测</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 生成提交文件</span></span><br><span class="line">submission_df.to_csv(<span class="string">&#x27;submission.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-超参数调优"><a href="#4-3-超参数调优" class="headerlink" title="4.3 超参数调优"></a>4.3 超参数调优</h3><p>通过实验寻找最佳的模型配置。</p>
+<ul>
+<li><strong>关键超参数</strong>: 学习率、网络结构（层数、神经元数）、训练周期数等。</li>
+<li><strong>策略</strong>: 一次只调整一个参数，观察其对验证集性能的影响。</li>
+<li><strong>自动化</strong>: 将训练&#x2F;评估过程封装成函数，用循环来自动化测试不同的超参数组合。</li>
+</ul>
+<h2 id="5-代码实战"><a href="#5-代码实战" class="headerlink" title="5.代码实战"></a>5.代码实战</h2><h3 id="5-1PIMA糖尿病分类"><a href="#5-1PIMA糖尿病分类" class="headerlink" title="5.1PIMA糖尿病分类"></a>5.1PIMA糖尿病分类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> TensorDataset, DataLoader</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score, precision_score, recall_score, f1_score</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DiabetesClassifier</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.layer1 = nn.Linear(<span class="number">8</span>, <span class="number">6</span>)</span><br><span class="line">        self.layer2 = nn.Linear(<span class="number">6</span>, <span class="number">4</span>)</span><br><span class="line">        self.layer3 = nn.Linear(<span class="number">4</span>, <span class="number">1</span>)</span><br><span class="line">        self.relu = nn.ReLU()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.relu(self.layer1(x))</span><br><span class="line">        x = self.relu(self.layer2(x))</span><br><span class="line">        x = self.layer3(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">EPOCHS = <span class="number">100</span></span><br><span class="line">LR = <span class="number">0.01</span></span><br><span class="line">BATCH_SIZE = <span class="number">32</span></span><br><span class="line">RANDOM_STATE = <span class="number">42</span></span><br><span class="line"></span><br><span class="line">raw_data = np.loadtxt(<span class="string">&#x27;./datasets/diabetes.csv&#x27;</span>, delimiter=<span class="string">&#x27;,&#x27;</span>, dtype=np.float32)</span><br><span class="line">features = raw_data[:, :-<span class="number">1</span>]</span><br><span class="line">labels = raw_data[:, [-<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">X_train, X_test, y_train, y_test = train_test_split(</span><br><span class="line">    features, labels, test_size=<span class="number">0.2</span>, random_state=RANDOM_STATE</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">scaler = StandardScaler()</span><br><span class="line">X_train = scaler.fit_transform(X_train)</span><br><span class="line">X_test = scaler.transform(X_test)</span><br><span class="line"></span><br><span class="line">train_dataset = TensorDataset(torch.from_numpy(X_train), torch.from_numpy(y_train))</span><br><span class="line">test_dataset = TensorDataset(torch.from_numpy(X_test), torch.from_numpy(y_test))</span><br><span class="line"></span><br><span class="line">train_loader = DataLoader(dataset=train_dataset, batch_size=BATCH_SIZE, shuffle=<span class="literal">True</span>)</span><br><span class="line">test_loader = DataLoader(dataset=test_dataset, batch_size=BATCH_SIZE, shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">device = torch.device(<span class="string">&#x27;cuda&#x27;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span>)</span><br><span class="line">model = DiabetesClassifier().to(device)</span><br><span class="line"></span><br><span class="line">criterion = nn.BCEWithLogitsLoss()</span><br><span class="line">optimizer = torch.optim.Adam(model.parameters(), lr=LR)</span><br><span class="line"></span><br><span class="line">loss_history = []</span><br><span class="line">model.train()</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(EPOCHS):</span><br><span class="line">    epoch_loss = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> features, labels <span class="keyword">in</span> train_loader:</span><br><span class="line">        features, labels = features.to(device), labels.to(device)</span><br><span class="line">        outputs = model(features)</span><br><span class="line">        loss = criterion(outputs, labels)</span><br><span class="line"></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">        epoch_loss += loss.item()</span><br><span class="line">    </span><br><span class="line">    avg_loss = epoch_loss / <span class="built_in">len</span>(train_loader)</span><br><span class="line">    loss_history.append(avg_loss)</span><br><span class="line"></span><br><span class="line">all_labels = []</span><br><span class="line">all_predictions = []</span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    <span class="keyword">for</span> features, labels <span class="keyword">in</span> test_loader:</span><br><span class="line">        features, labels = features.to(device), labels.to(device)</span><br><span class="line">        outputs = model(features)</span><br><span class="line">        predicted = (torch.sigmoid(outputs) &gt; <span class="number">0.5</span>).<span class="built_in">float</span>()</span><br><span class="line"></span><br><span class="line">        all_labels.extend(labels.cpu().numpy())</span><br><span class="line">        all_predictions.extend(predicted.cpu().numpy())</span><br><span class="line"></span><br><span class="line">accuracy = accuracy_score(all_labels, all_predictions)</span><br><span class="line">precision = precision_score(all_labels, all_predictions)</span><br><span class="line">recall = recall_score(all_labels, all_predictions)</span><br><span class="line">f1 = f1_score(all_labels, all_predictions)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Accuracy: <span class="subst">&#123;accuracy*<span class="number">100</span>:<span class="number">.2</span>f&#125;</span>%&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Precision: <span class="subst">&#123;precision*<span class="number">100</span>:<span class="number">.2</span>f&#125;</span>%&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Recall: <span class="subst">&#123;recall*<span class="number">100</span>:<span class="number">.2</span>f&#125;</span>%&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;F1 Score: <span class="subst">&#123;f1*<span class="number">100</span>:<span class="number">.2</span>f&#125;</span>%&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">plt.plot(<span class="built_in">range</span>(<span class="number">1</span>, EPOCHS+<span class="number">1</span>), loss_history)</span><br><span class="line">plt.xlabel(<span class="string">&quot;Epoch&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;Loss&quot;</span>)</span><br><span class="line">plt.title(<span class="string">&quot;Training Loss Curve&quot;</span>)</span><br><span class="line">plt.grid()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2泰坦尼克号生还预测分类"><a href="#5-2泰坦尼克号生还预测分类" class="headerlink" title="5.2泰坦尼克号生还预测分类"></a>5.2泰坦尼克号生还预测分类</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> TensorDataset, DataLoader</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;./datasets/titanic/train.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line">age_median = df[<span class="string">&#x27;Age&#x27;</span>].median()</span><br><span class="line">df[<span class="string">&#x27;Age&#x27;</span>] = df[<span class="string">&#x27;Age&#x27;</span>].fillna(age_median)</span><br><span class="line">embarked_mode = df[<span class="string">&#x27;Embarked&#x27;</span>].mode()[<span class="number">0</span>]</span><br><span class="line">df[<span class="string">&#x27;Embarked&#x27;</span>] = df[<span class="string">&#x27;Embarked&#x27;</span>].fillna(embarked_mode)</span><br><span class="line"></span><br><span class="line">df = pd.get_dummies(df, columns=[<span class="string">&#x27;Sex&#x27;</span>, <span class="string">&#x27;Embarked&#x27;</span>], drop_first=<span class="literal">True</span>)</span><br><span class="line">df = df.drop([<span class="string">&#x27;PassengerId&#x27;</span>, <span class="string">&#x27;Name&#x27;</span>, <span class="string">&#x27;Ticket&#x27;</span>, <span class="string">&#x27;Cabin&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">X = df.drop([<span class="string">&#x27;Survived&#x27;</span>], axis=<span class="number">1</span>).to_numpy()</span><br><span class="line">y = df[<span class="string">&#x27;Survived&#x27;</span>].to_numpy().reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">X_train, X_val, y_train, y_val = train_test_split(</span><br><span class="line">    X, y, test_size=<span class="number">0.2</span>, random_state=<span class="number">42</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">scaler = StandardScaler()</span><br><span class="line">X_train = scaler.fit_transform(X_train)</span><br><span class="line">X_val = scaler.transform(X_val)</span><br><span class="line"></span><br><span class="line">X_train = torch.tensor(X_train, dtype=torch.float32)</span><br><span class="line">X_val = torch.tensor(X_val, dtype=torch.float32)</span><br><span class="line">y_train = torch.tensor(y_train, dtype=torch.float32)</span><br><span class="line">y_val = torch.tensor(y_val, dtype=torch.float32)</span><br><span class="line"></span><br><span class="line">train_dataset = TensorDataset(X_train, y_train)</span><br><span class="line">val_dataset = TensorDataset(X_val, y_val)</span><br><span class="line"></span><br><span class="line">train_loader = DataLoader(dataset=train_dataset, batch_size=<span class="number">32</span>, shuffle=<span class="literal">True</span>)</span><br><span class="line">val_loader = DataLoader(dataset=val_dataset, batch_size=<span class="number">32</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">input_features = X_train.shape[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Classifier</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, num_features</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.net = nn.Sequential(</span><br><span class="line">            nn.Linear(num_features, <span class="number">16</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Linear(<span class="number">16</span>, <span class="number">8</span>),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">            nn.Linear(<span class="number">8</span>, <span class="number">1</span>),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.net(x)</span><br><span class="line"></span><br><span class="line">EPOCHS = <span class="number">200</span></span><br><span class="line">LR = <span class="number">0.001</span></span><br><span class="line">model = Classifier(input_features)</span><br><span class="line">criterion = nn.BCEWithLogitsLoss()</span><br><span class="line">optimizer = torch.optim.Adam(model.parameters(), lr=LR)</span><br><span class="line"></span><br><span class="line">model.train()</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(EPOCHS):</span><br><span class="line">    <span class="keyword">for</span> features, labels <span class="keyword">in</span> train_loader:</span><br><span class="line">        outputs = model(features)</span><br><span class="line">        loss = criterion(outputs, labels)</span><br><span class="line"></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">model.<span class="built_in">eval</span>()</span><br><span class="line">all_predictions = []</span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    <span class="keyword">for</span> features, labels <span class="keyword">in</span> val_loader:</span><br><span class="line">        outputs = model(features)</span><br><span class="line">        predicted = (torch.sigmoid(outputs) &gt; <span class="number">0.5</span>).<span class="built_in">float</span>()</span><br><span class="line">        all_predictions.extend(predicted.numpy())</span><br><span class="line"></span><br><span class="line">accuracy = accuracy_score(y_val, all_predictions)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;Accuracy in val set: <span class="subst">&#123;accuracy*<span class="number">100</span>:<span class="number">.2</span>f&#125;</span>%&#x27;</span>)</span><br><span class="line"></span><br><span class="line">test_df = pd.read_csv(<span class="string">&#x27;./datasets/titanic/test.csv&#x27;</span>)</span><br><span class="line">passenger_ids = test_df[<span class="string">&#x27;PassengerId&#x27;</span>]</span><br><span class="line"></span><br><span class="line">fare_median = df[<span class="string">&#x27;Fare&#x27;</span>].median()</span><br><span class="line">test_df[<span class="string">&#x27;Age&#x27;</span>] = test_df[<span class="string">&#x27;Age&#x27;</span>].fillna(age_median)</span><br><span class="line">test_df[<span class="string">&#x27;Fare&#x27;</span>] = test_df[<span class="string">&#x27;Fare&#x27;</span>].fillna(fare_median)</span><br><span class="line"></span><br><span class="line">test_df = pd.get_dummies(test_df, columns=[<span class="string">&#x27;Sex&#x27;</span>, <span class="string">&#x27;Embarked&#x27;</span>], drop_first=<span class="literal">True</span>)</span><br><span class="line">test_features_df = test_df.drop([<span class="string">&#x27;PassengerId&#x27;</span>, <span class="string">&#x27;Name&#x27;</span>, <span class="string">&#x27;Ticket&#x27;</span>, <span class="string">&#x27;Cabin&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">train_columns = df.drop([<span class="string">&#x27;Survived&#x27;</span>], axis=<span class="number">1</span>).columns</span><br><span class="line">test_features_df = test_features_df.reindex(columns=train_columns, fill_value=<span class="number">0</span>).to_numpy()</span><br><span class="line"></span><br><span class="line">X_test = scaler.transform(test_features_df)</span><br><span class="line">X_test = torch.tensor(X_test, dtype=torch.float32)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    test_outputs = model(X_test)</span><br><span class="line">    predictions = (torch.sigmoid(test_outputs) &gt; <span class="number">0.5</span>).<span class="built_in">int</span>().numpy()</span><br><span class="line"></span><br><span class="line">submission_df = pd.DataFrame(&#123;<span class="string">&#x27;PassengerId&#x27;</span>: passenger_ids,<span class="string">&#x27;Survived&#x27;</span>: predictions.flatten()&#125;)</span><br><span class="line">submission_df.to_csv(<span class="string">&#x27;submission.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+
+                    
+                </div>
+
+                
+                        
+<div class="post-copyright-info-container border-box">
+    <div class="copyright-info-content border-box">
+        <div class="copyright-info-top border-box">
+            <div class="copyright-post-title border-box text-ellipsis">
+                PyTorch 学习笔记-Week5
+            </div>
+
+            <div class="copyright-post-link border-box text-ellipsis">
+                posts/81e7205c.html
+            </div>
+        </div>
+
+        <div class="copyright-info-bottom border-box">
+            <div class="copyright-post-author bottom-item">
+                <div class="type">
+                    作者
+                </div>
+                <div class="content">ChaptSand</div>
+            </div>
+
+            <div class="post-time bottom-item">
+                <div class="type">
+                    发布于
+                </div>
+                <div class="content">2025-10-13 16:16</div>
+            </div>
+
+
+            <div class="post-license bottom-item">
+                <div class="type">
+                    许可
+                </div>
+                <div class="content tooltip" data-tooltip-content="CC BY-NC-SA 4.0">
+                    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">
+                        
+                            <i class="fa-brands fa-creative-commons"></i>
+                            <i class="fa-brands fa-creative-commons-by"></i>
+                            <i class="fa-brands fa-creative-commons-nc"></i>
+                            <i class="fa-brands fa-creative-commons-sa"></i>
+                        
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <i class="copyright-bg fa-solid fa-copyright"></i>
+    </div>
+    <div class="copy-copyright-info flex-center tooltip" data-tooltip-content="复制版权信息" data-tooltip-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/DL-Pytorch/">DL, Pytorch</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/posts/5a8a6c8d.html"
+                                   title="PyTorch学习笔记-Week6"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">PyTorch学习笔记-Week6</span>
+                                        <span class="post-nav-item">上一篇</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/posts/90f74cc1.html"
+                                   title="使用WSL2安装配置深度学习环境"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">使用WSL2安装配置深度学习环境</span>
+                                        <span class="post-nav-item">下一篇</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+    <div class="comments-container border-box">
+        <div id="comments-anchor" class="comment-area-title border-box">
+            <i class="fas fa-comments"></i>&nbsp;评论
+        </div>
+        <div class="comment-plugin-fail border-box">
+    <span class="fail-tip">评论插件加载失败</span>
+    <button class="reload keep-button">点击重新加载</button>
+</div>
+<div class="comment-plugin-loading flex-center border-box">
+    <i class="loading-icon fa-solid fa-spinner fa-spin"></i>
+    <span class="load-tip">正在加载评论插件</span>
+</div>
+<script data-pjax>
+  window.KeepCommentPlugin = {}
+  window.KeepCommentPlugin.hideLoading = () => {
+    const cplDom = document.querySelector('.comments-container .comment-plugin-loading')
+    cplDom.style.display = 'none'
+  }
+  window.KeepCommentPlugin.loadFailHandle = () => {
+    window.KeepCommentPlugin.hideLoading()
+    const cpfDom = document.querySelector('.comments-container .comment-plugin-fail')
+    cpfDom.style.display = 'flex'
+    cpfDom.querySelector('.reload').addEventListener('click', () => {
+      window.location.reload()
+    })
+  }
+</script>
+
+        
+            
+
+    <div class="valine-container">
+        <div id="vcomments"></div>
+        <script 
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        ></script>
+        <script 
+                async
+                onerror="window.KeepCommentPlugin.loadFailHandle()"
+        >
+          window.KeepCommentPlugin.initValine = () => {
+            const config = {
+              el: '#vcomments',
+              appId: 'jHqQ8N0yNj2mbPtAvAA2TofG-gzGzoHsz',
+              appKey: 'Q05rqHhfkwmqRYgv9nel8ktH',
+              meta: ['nick', 'mail', 'link'],
+              avatar: 'wavatar',
+              enableQQ: true,
+              placeholder: '让我来康康',
+              lang: 'zh-CN'.toLowerCase()
+            }
+
+            if ('') {
+              config.serverURLs = ''
+            }
+
+            if (window?.Valine) {
+              new Valine(config)
+              window.KeepCommentPlugin.hideLoading()
+            } else {
+              setTimeout(() => {
+                window.KeepCommentPlugin.initValine()
+              }, 1000)
+            }
+          }
+
+          if ('false' === 'true') {
+            setTimeout(() => {
+              window.KeepCommentPlugin.initValine()
+            }, 1200)
+          } else {
+            window.addEventListener('DOMContentLoaded', window.KeepCommentPlugin.initValine)
+          }
+        </script>
+    </div>
+
+
+        
+    </div>
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc right-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-text">1. 核心概念与工作流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E8%AE%AD%E7%BB%83%E4%B8%89%E5%85%83%E7%BB%84%EF%BC%9AEpoch-Batch-Iteration"><span class="nav-text">1.1 训练三元组：Epoch, Batch, Iteration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%A0%87%E5%87%86%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-text">1.2 标准机器学习工作流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%8E%E5%8A%A0%E8%BD%BD-Pandas-PyTorch"><span class="nav-text">2. 数据处理与加载 (Pandas &amp; PyTorch)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%8E%A2%E7%B4%A2%E6%80%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-EDA"><span class="nav-text">2.1 探索性数据分析 (EDA)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-text">2.2 数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E5%80%BC"><span class="nav-text">a. 处理缺失值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E5%A4%84%E7%90%86%E7%B1%BB%E5%88%AB%E7%89%B9%E5%BE%81%EF%BC%88%E7%8B%AC%E7%83%AD%E7%BC%96%E7%A0%81%EF%BC%89"><span class="nav-text">b. 处理类别特征（独热编码）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="nav-text">c. 特征选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE-Standardization"><span class="nav-text">d. 特征缩放 (Standardization)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%92%8C%E5%81%9A%E6%B3%95"><span class="nav-text">正确的顺序和做法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E7%9A%84%E9%87%8D%E8%A6%81%E6%8F%90%E7%A4%BA%EF%BC%9A%E4%B8%8D%E8%A6%81%E6%A0%87%E5%87%86%E5%8C%96%E6%A0%87%E7%AD%BE"><span class="nav-text">额外的重要提示：不要标准化标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-PyTorch%E6%95%B0%E6%8D%AE%E7%AE%A1%E9%81%93"><span class="nav-text">2.3 PyTorch数据管道</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E8%87%AA%E5%AE%9A%E4%B9%89-Dataset"><span class="nav-text">a. 自定义 Dataset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-DataLoader"><span class="nav-text">b. DataLoader</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA%E4%B8%8E%E8%AE%AD%E7%BB%83"><span class="nav-text">3. 模型构建与训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%A8%A1%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="nav-text">3.1 模型定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%AE%AD%E7%BB%83%E5%BE%AA%E7%8E%AF"><span class="nav-text">3.2 训练循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%8A%80%E5%B7%A7"><span class="nav-text">4. 模型评估与实践技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E8%AF%84%E4%BC%B0%E5%BE%AA%E7%8E%AF"><span class="nav-text">4.1 评估循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Kaggle%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B"><span class="nav-text">4.2 Kaggle提交流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98"><span class="nav-text">4.3 超参数调优</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BB%A3%E7%A0%81%E5%AE%9E%E6%88%98"><span class="nav-text">5.代码实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1PIMA%E7%B3%96%E5%B0%BF%E7%97%85%E5%88%86%E7%B1%BB"><span class="nav-text">5.1PIMA糖尿病分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E7%94%9F%E8%BF%98%E9%A2%84%E6%B5%8B%E5%88%86%E7%B1%BB"><span class="nav-text">5.2泰坦尼克号生还预测分类</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2026
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">ChaptSand</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        由&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;驱动&nbsp;&&nbsp;主题&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+        <div class="count-info info-item">
+            
+
+            
+                <span class="count-item border-box uv">
+                    <span class="item-type border-box">访客数</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-item border-box pv">
+                    <span class="item-type border-box">访问量</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+            <li class="tools-item flex-center go-to-comments">
+                <i class="fas fa-comment"></i>
+                <span class="post-comments-count"></span>
+            </li>
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+            <li class="tools-item rss flex-center">
+                <a class="flex-center"
+                   href="/atom.xml"
+                   target="_blank"
+                >
+                    <i class="fas fa-rss"></i>
+                </a>
+            </li>
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+            <li class="tools-item go-to-comments-tablet flex-center">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-text">1. 核心概念与工作流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E8%AE%AD%E7%BB%83%E4%B8%89%E5%85%83%E7%BB%84%EF%BC%9AEpoch-Batch-Iteration"><span class="nav-text">1.1 训练三元组：Epoch, Batch, Iteration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%A0%87%E5%87%86%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-text">1.2 标准机器学习工作流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%8E%E5%8A%A0%E8%BD%BD-Pandas-PyTorch"><span class="nav-text">2. 数据处理与加载 (Pandas &amp; PyTorch)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%8E%A2%E7%B4%A2%E6%80%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-EDA"><span class="nav-text">2.1 探索性数据分析 (EDA)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-text">2.2 数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E5%80%BC"><span class="nav-text">a. 处理缺失值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-%E5%A4%84%E7%90%86%E7%B1%BB%E5%88%AB%E7%89%B9%E5%BE%81%EF%BC%88%E7%8B%AC%E7%83%AD%E7%BC%96%E7%A0%81%EF%BC%89"><span class="nav-text">b. 处理类别特征（独热编码）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="nav-text">c. 特征选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE-Standardization"><span class="nav-text">d. 特征缩放 (Standardization)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E7%9A%84%E9%A1%BA%E5%BA%8F%E5%92%8C%E5%81%9A%E6%B3%95"><span class="nav-text">正确的顺序和做法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9D%E5%A4%96%E7%9A%84%E9%87%8D%E8%A6%81%E6%8F%90%E7%A4%BA%EF%BC%9A%E4%B8%8D%E8%A6%81%E6%A0%87%E5%87%86%E5%8C%96%E6%A0%87%E7%AD%BE"><span class="nav-text">额外的重要提示：不要标准化标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-PyTorch%E6%95%B0%E6%8D%AE%E7%AE%A1%E9%81%93"><span class="nav-text">2.3 PyTorch数据管道</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-%E8%87%AA%E5%AE%9A%E4%B9%89-Dataset"><span class="nav-text">a. 自定义 Dataset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-DataLoader"><span class="nav-text">b. DataLoader</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA%E4%B8%8E%E8%AE%AD%E7%BB%83"><span class="nav-text">3. 模型构建与训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%A8%A1%E5%9E%8B%E5%AE%9A%E4%B9%89"><span class="nav-text">3.1 模型定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%AE%AD%E7%BB%83%E5%BE%AA%E7%8E%AF"><span class="nav-text">3.2 训练循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E5%AE%9E%E8%B7%B5%E6%8A%80%E5%B7%A7"><span class="nav-text">4. 模型评估与实践技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E8%AF%84%E4%BC%B0%E5%BE%AA%E7%8E%AF"><span class="nav-text">4.1 评估循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Kaggle%E6%8F%90%E4%BA%A4%E6%B5%81%E7%A8%8B"><span class="nav-text">4.2 Kaggle提交流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98"><span class="nav-text">4.3 超参数调优</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BB%A3%E7%A0%81%E5%AE%9E%E6%88%98"><span class="nav-text">5.代码实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1PIMA%E7%B3%96%E5%B0%BF%E7%97%85%E5%88%86%E7%B1%BB"><span class="nav-text">5.1PIMA糖尿病分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2%E6%B3%B0%E5%9D%A6%E5%B0%BC%E5%85%8B%E5%8F%B7%E7%94%9F%E8%BF%98%E9%A2%84%E6%B5%8B%E5%88%86%E7%B1%BB"><span class="nav-text">5.2泰坦尼克号生还预测分类</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/libs/anime.min.js"></script>
+
+<!-- local search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.3.0/js/post/copyright-info.min.js"></script>
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
